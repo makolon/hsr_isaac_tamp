@@ -1,0 +1,3 @@
+[submodule "hsr_rl/agent/pddlstream_policy/downward"]
+	path = hsr_rl/agent/pddlstream_policy/downward
+	url = https://github.com/caelan/downward.git
