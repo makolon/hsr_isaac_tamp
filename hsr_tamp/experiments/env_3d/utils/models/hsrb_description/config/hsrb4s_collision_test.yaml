@@ -1,0 +1,85 @@
+# Copyright (c) 2017 TOYOTA MOTOR CORPORATION
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+#  * Redistributions of source code must retain the above copyright notice,
+#  this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above copyright
+#  notice, this list of conditions and the following disclaimer in the
+#  documentation and/or other materials provided with the distribution.
+#  * Neither the name of Toyota Motor Corporation nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+joints:
+  - head_pan_joint
+  - head_tilt_joint
+  - arm_lift_joint
+  - arm_flex_joint
+  - arm_roll_joint
+  - wrist_flex_joint
+  - wrist_roll_joint
+  - hand_motor_joint
+
+poses:
+  - name: collision_hand_mic
+    collision: True
+    position: [0.1802922716303077, -1.570000551136299, 0.19123618815956409, -0.47513046329519737, 0.06998637000326413, 0.5480226998533024, -0.04025273346247582, 1.187727]
+  - name: collision_arm_head_left
+    collision: True
+    position: [-1.573921728369692, 4.4488637008788245e-06, 0.5597032823531418, -0.014551463295197298, 1.6370003264043476e-05, -1.5700053001466974, -0.00036673346247573235, 1.194818]
+  - name: collision_hand_head_right
+    collision: True
+    position: [0.8000052716303077, 4.4488637008788245e-06, 0.10794166879875525, -0.015318463295197482, -1.570033629996736, -1.5700003001466976, -0.000747733462475697, -1.165863]
+  - name: collision_right_gripper_head_front
+    collision: True
+    position: [0.04142127163030773, 4.4488637008788245e-06, 0.01000052835780425, -0.014551463295197298, -1.569971629996736, -0.8900033001466974, 1.4266537524232348e-05, 1.22259]
+  - name: collision_hand_display_back
+    collision: True
+    position: [-2.338964728369692, 0.3198684488637008, 0.20414786264968943, -0.33400346329519737, 0.05001437000326403, 0.5499926998533025, 0.00040126653752414754, -1.168227]
+  - name: collision_hand_head_back
+    collision: True
+    position: [-2.423701728369692, 0.3998694488637008, 0.20414870686968942, -0.014551463295197298, 0.05003437000326416, -1.5500063001466975, 1.4266537524232348e-05, -1.166454]
+  - name: collision_arm_head_right
+    collision: True
+    position: [1.6194122716303077, -0.3053935511362992, 0.24444146522008067, -0.014551463295197298, -0.6900496299967358, -1.4300853001466973, 0.35973326653752435, -1.162318]
+  - name: collision_gripper_head_front
+    collision: True
+    position: [0.18043027163030834, -0.6457705511362991, 0.06301662564831903, -0.3758054632951975, 3.621617370003264, -1.3900873001466976, 0.35973326653752435, -1.161136]
+  - name: collision_hand_head_right_2
+    collision: True
+    position: [1.739446271630308, -0.02576655113629922, 0.19999660943964911, -0.03735146329519745, -1.5358866299967358, -1.3089943001466975, -0.058657733462475825, -1.148727]
+  - name: no_collision_gripper_head_front
+    collision: False
+    position: [-6.111358143989776e-06, -4.0671969359085125e-07, 0.1767214565469065, -0.0194099347674328, -1.5699986805020427, -1.5699953346282438, 4.7604762588360217e-05, 1.220227]
+  - name: no_collision_arm_head_right
+    collision: False
+    position: [1.4997061710690698, -6.139065969357205e-06, 0.43503557335140214, -0.00033150207363563666, 0.029979803805430194, -1.5700053970493122, -0.00022827258624147362, 1.182408]
+  - name: no_collision_arm_head_left
+    collision: False
+    position: [-0.91985782893093, -1.913906596939796e-05, 0.43503557335140214, -0.00033150207363563666, 0.029979803805430194, -1.5700003970493122, -0.00022827258624147362, 1.18359]
+  - name: no_collision_arm_head_left_2
+    collision: False
+    position: [-1.4114518289309301, -1.913906596939796e-05, 0.43503557335140214, -0.00033150207363563666, 0.02997480380542994, -1.5700053970493122, -0.00022827258624147362, 1.182408]
+  - name: no_collision_hand_head_left
+    collision: False
+    position: [-1.039878888641856, 4.5932803063308825e-06, 0.1767214565469065, -0.030061934767432934, -1.570003680502043, -1.5699903346282438, 4.7604762588360217e-05, 1.219045]
+  - name: no_collision_hand_xtion
+    collision: False
+    position: [3.7111358143882e-05, -1.5600234067196934, 0.20589144258718972, -0.21921193476743284, -1.4199956805020428, -1.5700003346282438, 4.7604762588360217e-05, 1.219045]
+  - name: no_collision_gripper_display
+    collision: False
+    position: [2.111135814431009e-05, -1.4800214067196935, 0.20589144258718972, -0.21921193476743284, -1.4199956805020428, -1.5700003346282438, -0.4597593952374117, 1.232636]

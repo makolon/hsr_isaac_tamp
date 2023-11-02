@@ -1,0 +1,42 @@
+<package>
+  <name>hsrb_description</name>
+  <version>1.0.0</version>
+  <description>HSRのロボット定義ファイル</description>
+  <maintainer email="xr-hsr-support@mail.toyota.co.jp">HSR Support</maintainer>
+
+  <license>BSD 3-clause Clear License</license>
+
+  <url type="website">None</url>
+
+  <author>Akiyoshi Ochiai</author>
+  <author>Hiromichi Nakashima</author>
+  <author>Kazuhito Tanaka</author>
+  <author>Kazuto Murase</author>
+  <author>Keisuke Takeshita</author>
+  <author>Koji Terada</author>
+  <author>Koki Kataoka</author>
+  <author>Minori Higuchi</author>
+  <author>Satoru Onoda</author>
+  <author>Takafumi Mizuno</author>
+  <author>Takuya Ikeda</author>
+  <author>Tamaki Nishino</author>
+  <author>Yoshimi Iyoda</author>
+  <author>Yusuke Ota</author>
+  <author>Yuto Mori</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>xacro</build_depend>
+  <build_depend>rosbash</build_depend>
+  <build_depend>hsrb_meshes</build_depend>
+
+  <run_depend>xacro</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>hsrb_meshes</run_depend>
+
+  <test_depend>liburdfdom-tools</test_depend>
+  <test_depend>urdfdom_py</test_depend>
+  <test_depend>robot_state_publisher</test_depend>
+  <test_depend>joint_state_publisher</test_depend>
+  <test_depend>roslaunch</test_depend>
+</package>

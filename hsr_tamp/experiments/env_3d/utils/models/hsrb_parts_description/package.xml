@@ -1,0 +1,24 @@
+<package>
+  <name>hsrb_parts_description</name>
+  <version>0.21.0</version>
+  <description>HSRのロボット定義共通ファイル</description>
+  <maintainer email="keisuke_takeshita@mail.toyota.co.jp">Keisuke Takeshita</maintainer>
+
+  <license>TMC</license>
+
+  <url type="website">None</url>
+
+  <author>Tamaki Nishino</author>
+  <author>Akiyoshi Ochiai</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>xacro</build_depend>
+  <build_depend>rosbash</build_depend>
+
+  <run_depend>xacro</run_depend>
+
+  <test_depend>liburdfdom-tools</test_depend>
+  <test_depend>urdfdom_py</test_depend>
+</package>
+
