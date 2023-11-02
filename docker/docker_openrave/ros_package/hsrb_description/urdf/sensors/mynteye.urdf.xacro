@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find hsrb_description)/urdf/sensors/mynteye.gazebo.xacro"/>
+
+    <xacro:macro name="mynteye" params="prefix parent sensor_name robot_namespace baseline *origin">
+        <joint name="${prefix}_camera_link_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}" />
+            <child link="${prefix}_camera_link" />
+        </joint>
+
+        <link name="${prefix}_camera_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.01 0.01 0.01"/>
+                </geometry>
+                <material name="black" />
+            </visual>
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+        <gazebo reference="${prefix}_camera_link">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <joint name="${prefix}_camera_gazebo_frame_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="${pi/2.0} ${-pi/2.0} 0.0"/>
+            <parent link="${prefix}_camera_link" />
+            <child link="${prefix}_camera_gazebo_frame" />
+        </joint>
+
+        <link name="${prefix}_camera_gazebo_frame">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <xacro:mynteye_gazebo
+            sensor_name="${sensor_name}"
+            parent_frame="${prefix}_camera_gazebo_frame"
+            topic_frame_id="${prefix}_camera_frame"
+            robot_namespace="${robot_namespace}"
+            baseline="${baseline}" />
+    </xacro:macro>
+</robot>

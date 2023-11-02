@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<robot name="hsrb" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="mynteye_gazebo" params="sensor_name parent_frame topic_frame_id robot_namespace baseline">
+        <gazebo reference="${parent_frame}">
+            <sensor type="camera" name="${sensor_name}">
+                <update_rate>10</update_rate>
+                <camera name="${sensor_name}">
+                    <horizontal_fov>2.0944</horizontal_fov>
+                    <image>
+                        <width>752</width>
+                        <height>480</height>
+                        <format>R8G8B8</format>
+                    </image>
+                    <clip>
+                        <near>0.01</near>
+                        <far>100</far>
+                    </clip>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>
+                        <stddev>0.007</stddev>
+                    </noise>
+                </camera>
+                <plugin name="camera_controller" filename="libhsrb_gazebo_ros_camera.so">
+                    <alwaysOn>0</alwaysOn>
+                    <updateRate>0.0</updateRate>
+                    <cameraName>${sensor_name}</cameraName>
+                    <imageTopicName>image_raw</imageTopicName>
+                    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                    <frameName>${topic_frame_id}</frameName>
+                    <robotNamespace>${robot_namespace}</robotNamespace>
+                    <hackBaseline>${baseline}</hackBaseline>
+                    <distortionK1>0.0</distortionK1>
+                    <distortionK2>0.0</distortionK2>
+                    <distortionK3>0.0</distortionK3>
+                    <distortionT1>0.0</distortionT1>
+                    <distortionT2>0.0</distortionT2>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

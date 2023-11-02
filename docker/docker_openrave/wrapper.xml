@@ -1,0 +1,6 @@
+<robot file="hsrb4s.dae">
+  <Manipulator name="hsrb">
+    <base>base_footprint</base>
+    <effector>hand_palm_link</effector>
+  </Manipulator>
+</robot>

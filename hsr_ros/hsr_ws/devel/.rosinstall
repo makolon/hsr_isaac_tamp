@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /root/tamp-hsr/hsr_ros/hsr_ws/devel/setup.sh

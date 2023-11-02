@@ -1,0 +1,51 @@
+<!--
+Copyright (c) 2014, Toyota Motor Corporation
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ * Neither the name of Toyota Motor Corporation nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <!-- send urdf to param server -->
+  <arg name="personal_name" default="" />
+  <arg name="robot_model" default="hsrb4s" />
+  <arg name="visualization" default="true" />
+  <arg name="implicit_damping" default="false" />
+  <arg name="use_odom_virtual_joints" default="false" />
+
+  <group ns="/$(arg personal_name)">
+    <param name="tf_prefix" value="$(arg personal_name)" />
+    <group unless="$(arg use_odom_virtual_joints)">
+        <param name="robot_description"
+            command="$(find xacro)/xacro --inorder $(find hsrb_description)/robots/$(arg robot_model).urdf.xacro gazebo_visualization_enabled:=$(arg visualization) implicit_damping:=$(arg implicit_damping) personal_name:=$(arg personal_name) loopback_hardware:=$(arg use_odom_virtual_joints)" />
+    </group>
+    <group if="$(arg use_odom_virtual_joints)">
+        <param name="robot_description_gazebo"
+            command="$(find xacro)/xacro --inorder $(find hsrb_description)/robots/$(arg robot_model).urdf.xacro gazebo_visualization_enabled:=$(arg visualization) implicit_damping:=$(arg implicit_damping) personal_name:=$(arg personal_name) loopback_hardware:=$(arg use_odom_virtual_joints)" />
+        <param name="robot_description"
+            command="$(find add_odom_virtual_joints)/add_odom_virtual_joints.py $(find xacro)/xacro --inorder $(find hsrb_description)/robots/hsrb4s.urdf.xacro gazebo_visualization_enabled:=$(arg visualization) implicit_damping:=$(arg implicit_damping) personal_name:=$(arg personal_name) loopback_hardware:=$(arg use_odom_virtual_joints)" />
+    </group>
+    <param name="robot_collision_pair" textfile="$(find hsrb_description)/robots/collision_pair_hsrb.xml" />
+  </group>
+</launch>

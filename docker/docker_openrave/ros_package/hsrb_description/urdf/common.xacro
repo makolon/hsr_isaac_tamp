@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2014, Toyota Motor Corporation
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ * Neither the name of Toyota Motor Corporation nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="implicit_damping" default="false" />
+
+  <xacro:macro name="hsrb_position_joint_transmission" params="joint reduction">
+     <transmission name="${joint}_transmission">
+       <type>transmission_interface/SimpleTransmission</type>
+       <joint name="${joint}">
+         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+       </joint>
+       <actuator name="${joint}_actuator">
+         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>${reduction}</mechanicalReduction>
+       </actuator>
+     </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="hsrb_effort_joint_transmission" params="joint reduction">
+     <transmission name="${joint}_transmission">
+       <type>transmission_interface/SimpleTransmission</type>
+       <joint name="${joint}">
+         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+       </joint>
+       <actuator name="${joint}_actuator">
+         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+         <mechanicalReduction>${reduction}</mechanicalReduction>
+       </actuator>
+     </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="hsrb_velocity_joint_transmission" params="joint reduction">
+      <transmission name="${prefix}_transmission">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="${joint}">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+          </joint>
+          <actuator name="${joint}_actuator">
+              <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+              <mechanicalReduction>${reduction}</mechanicalReduction>
+          </actuator>
+      </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_link" params="name gravity collide friction">
+    <gazebo reference="${name}">
+      <selfCollide>${collide}</selfCollide>
+      <gravity>${gravity}</gravity>
+      <mu1>${friction}</mu1>
+      <mu2>${friction}</mu2>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_link_flat_black" params="name gravity collide friction">
+    <gazebo reference="${name}">
+      <selfCollide>${collide}</selfCollide>
+      <gravity>${gravity}</gravity>
+      <mu1>${friction}</mu1>
+      <mu2>${friction}</mu2>
+      <material value="Gazebo/FlatBlack"/>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_link_caster" params="name">
+    <gazebo reference="${name}">
+      <selfCollide>false</selfCollide>
+      <gravity>true</gravity>
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <maxVel>1.0</maxVel>
+      <material value="Gazebo/FlatBlack"/>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_link_rubber" params="name">
+    <gazebo reference="${name}">
+      <selfCollide>false</selfCollide>
+      <gravity>true</gravity>
+      <turnGravityOff>false</turnGravityOff>
+      <kp>1000000.0</kp>
+      <kd>10.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.00</minDepth>
+      <material value="Gazebo/FlatBlack"/>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_link_bumper" params="name personal_name robot_name gravity collide friction">
+    <gazebo reference="${name}_link">
+      <selfCollide>${collide}</selfCollide>
+      <gravity>${gravity}</gravity>
+      <mu1>${friction}</mu1>
+      <mu2>${friction}</mu2>
+      <sensor name="${name}_contact" type="contact">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <contact>
+          <collision>${name}_link_collision</collision>
+        </contact>
+        <plugin name="hsrb_gazebo_ros_bumper_controller" filename="libhsrb_gazebo_ros_bumper.so">
+          <robotNamespace>${personal_name}/${robot_name}</robotNamespace>
+          <bumperTopicName>${name}_sensor</bumperTopicName>
+          <frameName>${name}_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_joint" params="name">
+    <gazebo reference="${name}">
+      <xacro:if value="$(arg implicit_damping)">
+        <implicitSpringDamper>1</implicitSpringDamper>
+      </xacro:if>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_joint_mimic" params="name">
+    <gazebo reference="${name}">
+    </gazebo>
+  </xacro:macro>
+
+</robot>

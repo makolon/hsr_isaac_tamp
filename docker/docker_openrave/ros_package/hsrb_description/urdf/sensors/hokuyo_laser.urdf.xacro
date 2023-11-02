@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hsrb_description)/urdf/sensors/hokuyo_laser.gazebo.xacro"/>
+
+    <!-- range sensor -->
+    <xacro:macro name="hokuyo_laser" params="prefix robot_namespace parent min_angle max_angle *origin">
+        <joint name="${prefix}_range_sensor_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}" />
+            <child link="${prefix}_range_sensor_link" />
+        </joint>
+
+        <link name="${prefix}_range_sensor_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://hsrb_meshes/meshes/sensors/laser.dae" />
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <mesh filename="package://hsrb_meshes/meshes/sensors/laser.stl" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <xacro:hokuyo_laser_gazebo
+            sensor_name="${prefix}_range_sensor"
+            robot_namespace="${robot_namespace}"
+            ros_topic="${prefix}_scan"
+            frame_name="${prefix}_range_sensor_link"
+            min_angle="${min_angle}" max_angle="${max_angle}" />
+    </xacro:macro>
+
+</robot>

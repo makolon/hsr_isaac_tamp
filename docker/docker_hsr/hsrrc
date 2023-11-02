@@ -1,0 +1,20 @@
+# please set network-interface
+network_if=enx00e5f13aea3f # Wireless
+
+if [ -e /opt/ros/noetic/setup.bash ] ; then
+    source /opt/ros/noetic/setup.bash
+else
+    echo "ROS packages are not installed."
+fi
+
+export TARGET_IP=$(LANG=C /sbin/ip address show $network_if | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*')
+if [ -z "$TARGET_IP" ] ; then
+    echo "ROS_IP is not set."
+else
+    export ROS_IP=$TARGET_IP
+fi
+
+export ROS_HOME=~/.ros
+export ROBOT_NAME=hsrc
+alias sim_mode='export ROS_MASTER_URI=http://localhost:11311 export PS1="\[\033[44;1;37m\]<local>\[\033[0m\]\w$ "'
+alias hsrb_mode='export ROS_MASTER_URI=http://192.168.11.8:11311 export PS1="\[\033[41;1;37m\]<hsrb>\[\033[0m\]\w$ "'

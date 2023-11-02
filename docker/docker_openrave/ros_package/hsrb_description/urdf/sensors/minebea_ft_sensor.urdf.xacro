@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<robot name="hsrb" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find hsrb_description)/urdf/sensors/minebea_ft_sensor.gazebo.xacro"/>
+
+    <xacro:macro name="minebea_ft_sensor" params="prefix robot_namespace parent *origin">
+        <joint name="${prefix}_ft_sensor_frame_joint" type="revolute">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="${prefix}_ft_sensor_frame"/>
+            <limit effort="100.0" velocity="1.5" lower="0" upper="0" />
+        </joint>
+
+        <link name="${prefix}_ft_sensor_frame">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <xacro:minebea_ft_sensor_gazebo
+            robot_namespace="${robot_namespace}"
+            joint_name="${prefix}_ft_sensor_frame_joint"
+            ros_topic="${robot_name}/${prefix}_wrench/raw" />
+    </xacro:macro>
+</robot>

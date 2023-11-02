@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<robot name="hsrb" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find hsrb_description)/urdf/sensors/intel_d435.gazebo.xacro"/>
+
+    <!-- rgbd_sensor -->
+    <xacro:macro name="d435" params="parent robot_namespace sensor_name *origin">
+        <joint name="${sensor_name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${sensor_name}_link"/>
+        </joint>
+
+        <link name="${sensor_name}_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://hsrb_meshes/meshes/sensors/xtion.dae" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://hsrb_meshes/meshes/sensors/xtion.stl" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <joint name="${sensor_name}_gazebo_frame_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="${pi/2.0} ${-pi/2.0} 0.0"/>
+            <parent link="${sensor_name}_link"/>
+            <child link="${sensor_name}_gazebo_frame"/>
+        </joint>
+
+        <link name="${sensor_name}_gazebo_frame">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+
+        <xacro:d435_gazebo
+            robot_namespace="${robot_namespace}"
+            sensor_name="${sensor_name}"
+            parent_frame="${sensor_name}_gazebo_frame"
+            topic_frame_id="${sensor_name}_rgb_frame" />
+    </xacro:macro>
+
+</robot>

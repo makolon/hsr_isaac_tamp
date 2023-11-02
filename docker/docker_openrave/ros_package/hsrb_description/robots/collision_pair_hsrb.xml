@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2015, Toyota Motor Corporation
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ * Neither the name of Toyota Motor Corporation nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<collision-detect-config>
+  <group name= "base">
+    <object name="base_link/collision/0"/>
+    <object name="base_range_sensor_link/collision/0"/>
+    <object name="base_r_drive_wheel_link/collision/0"/>
+    <object name="base_l_drive_wheel_link/collision/0"/>
+    <object name="base_r_passive_wheel_z_link/collision/0"/>
+    <object name="base_l_passive_wheel_z_link/collision/0"/>
+    <object name="base_f_bumper_link/collision/0"/>
+    <object name="base_b_bumper_link/collision/0"/>
+  </group>
+
+  <group name= "torso_lift">
+    <object name="torso_lift_link/collision/0"/>
+  </group>
+
+  <group name= "head_pan">
+    <object name="head_pan_link/collision/0"/>
+  </group>
+
+  <group name= "head_tilt">
+    <object name="head_tilt_link/collision/0"/>
+    <object name="head_tilt_link/collision/1"/>
+    <object name="head_rgbd_sensor_link/collision/0"/>
+  </group>
+
+  <group name= "arm_lift">
+    <object name="arm_lift_link/collision/0"/>
+  </group>
+
+  <group name= "arm_flex">
+    <object name="arm_flex_link/collision/0"/>
+  </group>
+
+  <group name= "arm_roll">
+    <object name="arm_roll_link/collision/0"/>
+  </group>
+
+  <group name= "wrist_flex">
+    <object name="wrist_flex_link/collision/0"/>
+  </group>
+
+  <group name= "wrist_roll">
+    <object name="wrist_roll_link/collision/0"/>
+  </group>
+
+  <group name= "gripper">
+    <object name="hand_palm_link/collision/0"/>
+    <object name="hand_l_spring_proximal_link/collision/0"/>
+    <object name="hand_l_distal_link/collision/0"/>
+    <object name="hand_r_spring_proximal_link/collision/0"/>
+    <object name="hand_r_distal_link/collision/0"/>
+  </group>
+
+  <group name= "OUTER">
+  </group>
+
+  <group name= "CUBOID">
+  </group>
+
+  <robot-parts-group>
+    <group name="base"/>
+    <group name="torso_lift"/>
+    <group name="head_pan"/>
+    <group name="head_tilt"/>
+    <group name="arm_lift"/>
+    <group name="arm_flex"/>
+    <group name="arm_roll"/>
+    <group name="wrist_flex"/>
+    <group name="wrist_roll"/>
+    <group name="gripper"/>
+  </robot-parts-group>
+
+  <non-contact>
+    <pair group1="base" group2="torso_lift" />
+    <pair group1="base" group2="arm_lift" />
+    <pair group1="torso_lift" group2="arm_lift" />
+    <pair group1="torso_lift" group2="head_pan" />
+    <pair group1="head_pan" group2="head_tilt" />
+    <pair group1="arm_lift" group2="arm_flex" />
+    <pair group1="arm_flex" group2="arm_roll" />
+    <pair group1="arm_roll" group2="wrist_flex" />
+    <pair group1="wrist_flex" group2="wrist_roll" />
+    <pair group1="wrist_roll" group2="gripper" />
+  </non-contact>
+
+  <non-check-inner-distance>
+  </non-check-inner-distance>
+
+</collision-detect-config>
