@@ -36,14 +36,14 @@ $ ln -s release release32
 
 ## Usage
 ### Simulation
-#### PDDLStream only for gearbox2d environment
-You can test PDDLStream on 2D pygame environment which imitate the gearbox assembling workspace.
+#### PDDLStream only for 2d environment
+You can test PDDLStream on 2D pygame environment.
 ```
 $ cd tamp-hsr/hsr_tamp/experiments/env_2d/
 $ python3 tamp_planner.py
 ```
 
-#### PDDLStream only for gearbox3d environment
+#### PDDLStream only for 3d environment
 You can test PDDLStream on 3D pybullet environment including cooking, holding block task.
 ```
 $ cd tamp-hsr/hsr_tamp/experiments/env_3d/
@@ -63,7 +63,7 @@ $ cd tamp-hsr/hsr_ros/hsr_ws/
 $ source devel/setup.bash
 ```
 
-3. Launch gearbox assembling scripts
+3. Execute ROS scripts
 ```
 $ roslaunch env_2d exec_tamp.launch --mode <feedforward/feedback>
 ```
