@@ -2,20 +2,20 @@ from collections import Counter
 
 import time
 
-from pddlstream.algorithms.algorithm import parse_problem
-from pddlstream.algorithms.common import add_facts, add_certified, SolutionStore, UNKNOWN_EVALUATION
-from pddlstream.algorithms.constraints import PlanConstraints
-from pddlstream.algorithms.downward import get_problem, task_from_domain_problem
-from pddlstream.algorithms.instantiate_task import sas_from_pddl, instantiate_task
-from pddlstream.algorithms.instantiation import Instantiator
-from pddlstream.algorithms.search import abstrips_solve_from_task
-from pddlstream.language.constants import is_plan
-from pddlstream.language.conversion import obj_from_pddl_plan
-from pddlstream.language.attachments import has_attachments, compile_fluents_as_attachments, solve_pyplanners
-from pddlstream.language.statistics import load_stream_statistics, write_stream_statistics
-from pddlstream.language.temporal import solve_tfd, SimplifiedDomain
-from pddlstream.language.write_pddl import get_problem_pddl
-from pddlstream.utils import INF, Verbose, str_from_object, elapsed_time
+from hsr_tamp.pddlstream.algorithms.algorithm import parse_problem
+from hsr_tamp.pddlstream.algorithms.common import add_facts, add_certified, SolutionStore, UNKNOWN_EVALUATION
+from hsr_tamp.pddlstream.algorithms.constraints import PlanConstraints
+from hsr_tamp.pddlstream.algorithms.downward import get_problem, task_from_domain_problem
+from hsr_tamp.pddlstream.algorithms.instantiate_task import sas_from_pddl, instantiate_task
+from hsr_tamp.pddlstream.algorithms.instantiation import Instantiator
+from hsr_tamp.pddlstream.algorithms.search import abstrips_solve_from_task
+from hsr_tamp.pddlstream.language.constants import is_plan
+from hsr_tamp.pddlstream.language.conversion import obj_from_pddl_plan
+from hsr_tamp.pddlstream.language.attachments import has_attachments, compile_fluents_as_attachments, solve_pyplanners
+from hsr_tamp.pddlstream.language.statistics import load_stream_statistics, write_stream_statistics
+from hsr_tamp.pddlstream.language.temporal import solve_tfd, SimplifiedDomain
+from hsr_tamp.pddlstream.language.write_pddl import get_problem_pddl
+from hsr_tamp.pddlstream.utils import INF, Verbose, str_from_object, elapsed_time
 
 UPDATE_STATISTICS = False
 
@@ -88,7 +88,7 @@ def process_stream_queue(instantiator, store, complexity_limit=INF, verbose=Fals
 #     if store.best_plan is None:
 #         return None
 #     assert not domain.axioms
-#     from pddlstream.algorithms.downward import plan_preimage
+#     from hsr_tamp.pddlstream.algorithms.downward import plan_preimage
 #     print(goal_expression)
 #     plan_preimage(store.best_plan, goal_expression)
 #     raise NotImplementedError()

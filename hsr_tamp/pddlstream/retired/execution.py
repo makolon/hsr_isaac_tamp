@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from pddlstream.utils import INF
+from hsr_tamp.pddlstream.utils import INF
 
 
 class ActionInfo(object):

@@ -3,11 +3,11 @@ import time
 from collections import namedtuple, deque, Counter
 from itertools import combinations
 
-from pddlstream.language.constants import is_plan
-from pddlstream.language.external import Result
-from pddlstream.language.statistics import Stats, Performance, EPSILON
-from pddlstream.language.stream import StreamResult
-from pddlstream.utils import INF, neighbors_from_orders, topological_sort, get_connected_components, \
+from hsr_tamp.pddlstream.language.constants import is_plan
+from hsr_tamp.pddlstream.language.external import Result
+from hsr_tamp.pddlstream.language.statistics import Stats, Performance, EPSILON
+from hsr_tamp.pddlstream.language.stream import StreamResult
+from hsr_tamp.pddlstream.utils import INF, neighbors_from_orders, topological_sort, get_connected_components, \
     sample_topological_sort, is_acyclic, layer_sort, Score, safe_zip
 
 

@@ -18,17 +18,17 @@ from utils.primitives import (
     # constant
     SUCTION_HEIGHT, MOVE_COST, GRASP, ENVIRONMENT_NAMES, PROBLEMS)
 
-from pddlstream.algorithms.meta import solve, create_parser
-from pddlstream.algorithms.downward import get_cost_scale
-from pddlstream.algorithms.constraints import PlanConstraints, WILD
-from pddlstream.algorithms.visualization import VISUALIZATIONS_DIR
-from pddlstream.language.external import defer_shared, get_defer_all_unbound, get_defer_any_unbound
-from pddlstream.language.constants import And, Equal, PDDLProblem, TOTAL_COST, print_solution, Or, Output
-from pddlstream.language.function import FunctionInfo
-from pddlstream.language.generator import from_gen_fn, from_list_fn, from_test, from_fn
-from pddlstream.language.stream import StreamInfo
-from pddlstream.language.temporal import get_end, compute_duration, retime_plan
-from pddlstream.utils import ensure_dir, safe_rm_dir, user_input, read, INF, get_file_path, str_from_object, \
+from hsr_tamp.pddlstream.algorithms.meta import solve, create_parser
+from hsr_tamp.pddlstream.algorithms.downward import get_cost_scale
+from hsr_tamp.pddlstream.algorithms.constraints import PlanConstraints, WILD
+from hsr_tamp.pddlstream.algorithms.visualization import VISUALIZATIONS_DIR
+from hsr_tamp.pddlstream.language.external import defer_shared, get_defer_all_unbound, get_defer_any_unbound
+from hsr_tamp.pddlstream.language.constants import And, Equal, PDDLProblem, TOTAL_COST, print_solution, Or, Output
+from hsr_tamp.pddlstream.language.function import FunctionInfo
+from hsr_tamp.pddlstream.language.generator import from_gen_fn, from_list_fn, from_test, from_fn
+from hsr_tamp.pddlstream.language.stream import StreamInfo
+from hsr_tamp.pddlstream.language.temporal import get_end, compute_duration, retime_plan
+from hsr_tamp.pddlstream.utils import ensure_dir, safe_rm_dir, user_input, read, INF, get_file_path, str_from_object, \
     sorted_str_from_list, implies, inclusive_range, Profiler
 
 
@@ -225,6 +225,7 @@ class TAMPPlanner(object):
         problem_fn = problem_from_name[args.problem]
         tamp_problem = problem_fn(args.number)
         print(tamp_problem)
+
         return tamp_problem, args
 
     def dump_pddlstream(self, pddlstream_problem):
@@ -258,7 +259,7 @@ class TAMPPlanner(object):
 
         skeletons = [TIGHT_SKELETON] if args.skeleton else None
         assert implies(args.skeleton, args.problem == 'tight')
-        max_cost = INF # 8*MOVE_COST
+        max_cost = INF
         constraints = PlanConstraints(skeletons=skeletons,
                                     exact=True,
                                     max_cost=max_cost)

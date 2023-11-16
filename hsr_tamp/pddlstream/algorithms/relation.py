@@ -1,7 +1,7 @@
 from collections import defaultdict
 
-from pddlstream.language.constants import is_parameter
-from pddlstream.utils import INF, get_mapping
+from hsr_tamp.pddlstream.language.constants import is_parameter
+from hsr_tamp.pddlstream.utils import INF, get_mapping
 
 
 def compute_order(domain, atoms):

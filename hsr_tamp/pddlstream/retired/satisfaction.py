@@ -2,15 +2,15 @@ from __future__ import print_function
 
 from collections import namedtuple
 
-from pddlstream.algorithms.meta import solve
-from pddlstream.algorithms.satisfaction import SatisfactionSolution
-from pddlstream.algorithms.constraints import to_constant, ORDER_PREDICATE, ASSIGNED_PREDICATE, \
+from hsr_tamp.pddlstream.algorithms.meta import solve
+from hsr_tamp.pddlstream.algorithms.satisfaction import SatisfactionSolution
+from hsr_tamp.pddlstream.algorithms.constraints import to_constant, ORDER_PREDICATE, ASSIGNED_PREDICATE, \
     get_internal_prefix
-from pddlstream.algorithms.downward import make_action, make_domain, make_predicate
-from pddlstream.language.constants import is_parameter, Not, PDDLProblem, MINIMIZE, NOT, partition_facts, get_costs, \
+from hsr_tamp.pddlstream.algorithms.downward import make_action, make_domain, make_predicate
+from hsr_tamp.pddlstream.language.constants import is_parameter, Not, PDDLProblem, MINIMIZE, NOT, partition_facts, get_costs, \
     get_constraints
-from pddlstream.language.conversion import get_prefix, get_args, obj_from_value_expression
-from pddlstream.utils import safe_zip
+from hsr_tamp.pddlstream.language.conversion import get_prefix, get_args, obj_from_value_expression
+from hsr_tamp.pddlstream.utils import safe_zip
 
 Cluster = namedtuple('Cluster', ['constraints', 'parameters'])
 

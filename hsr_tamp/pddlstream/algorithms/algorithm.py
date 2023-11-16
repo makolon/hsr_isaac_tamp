@@ -1,19 +1,19 @@
 from collections import Counter
 
-from pddlstream.algorithms.common import evaluations_from_init, SOLUTIONS
-from pddlstream.algorithms.constraints import add_plan_constraints
-from pddlstream.algorithms.downward import parse_lisp, parse_goal, has_costs, set_unit_costs, normalize_domain_goal
-from pddlstream.language.temporal import parse_domain, SimplifiedDomain
-from pddlstream.language.constants import get_prefix, get_args
-from pddlstream.language.conversion import obj_from_value_expression
-from pddlstream.language.exogenous import compile_to_exogenous
-from pddlstream.language.external import External
-from pddlstream.language.function import parse_function, parse_predicate
-from pddlstream.language.object import Object, OptimisticObject
-from pddlstream.language.optimizer import parse_optimizer
-from pddlstream.language.rule import parse_rule, apply_rules_to_streams, RULES
-from pddlstream.language.stream import parse_stream, Stream, StreamInstance
-from pddlstream.utils import INF
+from hsr_tamp.pddlstream.algorithms.common import evaluations_from_init, SOLUTIONS
+from hsr_tamp.pddlstream.algorithms.constraints import add_plan_constraints
+from hsr_tamp.pddlstream.algorithms.downward import parse_lisp, parse_goal, has_costs, set_unit_costs, normalize_domain_goal
+from hsr_tamp.pddlstream.language.temporal import parse_domain, SimplifiedDomain
+from hsr_tamp.pddlstream.language.constants import get_prefix, get_args
+from hsr_tamp.pddlstream.language.conversion import obj_from_value_expression
+from hsr_tamp.pddlstream.language.exogenous import compile_to_exogenous
+from hsr_tamp.pddlstream.language.external import External
+from hsr_tamp.pddlstream.language.function import parse_function, parse_predicate
+from hsr_tamp.pddlstream.language.object import Object, OptimisticObject
+from hsr_tamp.pddlstream.language.optimizer import parse_optimizer
+from hsr_tamp.pddlstream.language.rule import parse_rule, apply_rules_to_streams, RULES
+from hsr_tamp.pddlstream.language.stream import parse_stream, Stream, StreamInstance
+from hsr_tamp.pddlstream.utils import INF
 
 
 # TODO: rename file to parsing

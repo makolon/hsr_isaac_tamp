@@ -14,8 +14,8 @@ from hsr_rl.utils.task_utils import initialize_task
 from hsr_rl.envs.isaac_env_rlgames import IsaacEnvRlgames
 
 # TODO: modify
-sys.path.append('/root/tamp-hsr/hsr_tamp/experiments/env_3d/')
-sys.path.append('/root/tamp-hsr/hsr_ros/hsr_ws/src/env_3d/script/rl_policy/')
+sys.path.append('/root/hsr_isaac_tamp/hsr_tamp/experiments/env_3d/')
+sys.path.append('/root/hsr_isaac_tamp/hsr_ros/hsr_ws/src/env_3d/script/rl_policy/')
 sys.path.append('..')
 from tamp_planner import TAMPPlanner
 from post_process import PlanModifier
@@ -24,7 +24,7 @@ from rl_agent import ResidualRL
 
 def load_config(task_name='HSRExample', policy_name='Pick', algo_name='PPO'):
     skill_name = task_name + policy_name + algo_name + '.yaml'
-    file_name = os.path.join('/root/tamp-hsr/hsr_rl/cfg/train', skill_name)
+    file_name = os.path.join('/root/hsr_isaac_tamp/hsr_rl/cfg/train', skill_name)
     with open(file_name, 'r') as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
 

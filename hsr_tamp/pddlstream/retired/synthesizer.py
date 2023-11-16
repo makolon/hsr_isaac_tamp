@@ -1,13 +1,13 @@
 from collections import deque, Counter
 
-from pddlstream.algorithms.reorder import get_partial_orders
-from pddlstream.language.constants import is_plan
-from pddlstream.language.conversion import substitute_expression
-from pddlstream.language.function import FunctionResult
-from pddlstream.language.optimizer import get_cluster_values, OptimizerResult
-from pddlstream.language.statistics import Performance
-from pddlstream.language.stream import Stream, StreamInstance, StreamResult, StreamInfo
-from pddlstream.utils import neighbors_from_orders
+from hsr_tamp.pddlstream.algorithms.reorder import get_partial_orders
+from hsr_tamp.pddlstream.language.constants import is_plan
+from hsr_tamp.pddlstream.language.conversion import substitute_expression
+from hsr_tamp.pddlstream.language.function import FunctionResult
+from hsr_tamp.pddlstream.language.optimizer import get_cluster_values, OptimizerResult
+from hsr_tamp.pddlstream.language.statistics import Performance
+from hsr_tamp.pddlstream.language.stream import Stream, StreamInstance, StreamResult, StreamInfo
+from hsr_tamp.pddlstream.utils import neighbors_from_orders
 
 def decompose_result(result):
     if isinstance(result, SynthStreamResult):

@@ -10,10 +10,10 @@ import traceback
 
 from collections import namedtuple
 
-from pddlstream.algorithms.downward import TEMP_DIR, DOMAIN_INPUT, PROBLEM_INPUT, make_effects, \
+from hsr_tamp.pddlstream.algorithms.downward import TEMP_DIR, DOMAIN_INPUT, PROBLEM_INPUT, make_effects, \
     parse_sequential_domain, get_conjunctive_parts, write_pddl, make_action, make_parameters, make_object, fd_from_fact, Domain, make_effects
-from pddlstream.language.constants import DurativeAction, Fact, Not
-from pddlstream.utils import INF, ensure_dir, write, user_input, safe_rm_dir, read, elapsed_time, find_unique, safe_zip
+from hsr_tamp.pddlstream.language.constants import DurativeAction, Fact, Not
+from hsr_tamp.pddlstream.utils import INF, ensure_dir, write, user_input, safe_rm_dir, read, elapsed_time, find_unique, safe_zip
 
 PLANNER = 'tfd' # tfd | tflap | optic | tpshe | cerberus
 
@@ -512,7 +512,7 @@ def expand_condition(condition):
 
 def convert_durative(durative_actions, fluents):
     # TODO: if static, apply as a condition to all
-    from pddlstream.algorithms.advanced import get_predicates
+    from hsr_tamp.pddlstream.algorithms.advanced import get_predicates
     import pddl
 
     wait_action = make_action(
@@ -571,7 +571,7 @@ def convert_durative(durative_actions, fluents):
 
 
 def simple_from_durative_action(durative_actions, fluents):
-    from pddlstream.algorithms.advanced import get_predicates
+    from hsr_tamp.pddlstream.algorithms.advanced import get_predicates
     import pddl
     simple_actions = {}
     for action in durative_actions:

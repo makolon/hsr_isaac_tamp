@@ -2,11 +2,11 @@ from collections import defaultdict, namedtuple, Sized
 from heapq import heappush, heappop
 from itertools import product
 
-from pddlstream.algorithms.common import COMPLEXITY_OP
-from pddlstream.algorithms.relation import compute_order, Relation, solve_satisfaction
-from pddlstream.language.constants import is_parameter
-from pddlstream.language.conversion import is_atom, head_from_fact
-from pddlstream.utils import safe_zip, HeapElement, safe_apply_mapping
+from hsr_tamp.pddlstream.algorithms.common import COMPLEXITY_OP
+from hsr_tamp.pddlstream.algorithms.relation import compute_order, Relation, solve_satisfaction
+from hsr_tamp.pddlstream.language.constants import is_parameter
+from hsr_tamp.pddlstream.language.conversion import is_atom, head_from_fact
+from hsr_tamp.pddlstream.utils import safe_zip, HeapElement, safe_apply_mapping
 
 USE_RELATION = True
 

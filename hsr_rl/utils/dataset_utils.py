@@ -6,7 +6,7 @@ from scipy.spatial.transform import Rotation as R
 
 
 def load_dataset(problem_name, action_type='absolute', target_space='joint'):
-    dataset_dir = os.path.join('/root/tamp-hsr/hsr_tamp/experiments/env_3d/dataset', problem_name, 'full')
+    dataset_dir = os.path.join('/root/hsr_isaac_tamp/hsr_tamp/experiments/env_3d/dataset', problem_name, 'full')
 
     # Trajectory and metadata directory per skill
     traj_dir = os.path.join(dataset_dir, 'trajectory')
@@ -40,7 +40,7 @@ def load_dataset(problem_name, action_type='absolute', target_space='joint'):
     return action_dataset, metadata
 
 def load_skill_dataset(problem_name, skill_name, action_type='absolute', target_space='joint'):
-    dataset_dir = os.path.join('/root/tamp-hsr/hsr_tamp/experiments/env_3d/dataset', problem_name, skill_name)
+    dataset_dir = os.path.join('/root/hsr_isaac_tamp/hsr_tamp/experiments/env_3d/dataset', problem_name, skill_name)
 
     # Trajectory and metadata directory per skill
     traj_dir = os.path.join(dataset_dir, 'trajectory')

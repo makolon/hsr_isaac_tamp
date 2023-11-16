@@ -5,17 +5,17 @@ import time
 from itertools import product
 from copy import deepcopy, copy
 
-from pddlstream.algorithms.instantiation import Instantiator
-from pddlstream.algorithms.scheduling.plan_streams import plan_streams, OptSolution
-from pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
-from pddlstream.algorithms.constraints import add_plan_constraints, PlanConstraints, WILD
-from pddlstream.language.constants import FAILED, INFEASIBLE, is_plan
-from pddlstream.language.conversion import evaluation_from_fact, substitute_expression
-from pddlstream.language.function import FunctionResult, Function
-from pddlstream.language.stream import StreamResult, Result
-from pddlstream.language.statistics import check_effort, compute_plan_effort
-from pddlstream.language.object import Object, OptimisticObject
-from pddlstream.utils import INF, safe_zip, get_mapping, implies, elapsed_time
+from hsr_tamp.pddlstream.algorithms.instantiation import Instantiator
+from hsr_tamp.pddlstream.algorithms.scheduling.plan_streams import plan_streams, OptSolution
+from hsr_tamp.pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
+from hsr_tamp.pddlstream.algorithms.constraints import add_plan_constraints, PlanConstraints, WILD
+from hsr_tamp.pddlstream.language.constants import FAILED, INFEASIBLE, is_plan
+from hsr_tamp.pddlstream.language.conversion import evaluation_from_fact, substitute_expression
+from hsr_tamp.pddlstream.language.function import FunctionResult, Function
+from hsr_tamp.pddlstream.language.stream import StreamResult, Result
+from hsr_tamp.pddlstream.language.statistics import check_effort, compute_plan_effort
+from hsr_tamp.pddlstream.language.object import Object, OptimisticObject
+from hsr_tamp.pddlstream.utils import INF, safe_zip, get_mapping, implies, elapsed_time
 
 CONSTRAIN_STREAMS = False
 CONSTRAIN_PLANS = False

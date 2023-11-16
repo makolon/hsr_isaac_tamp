@@ -5,8 +5,8 @@ import pickle
 
 from collections import Counter, namedtuple
 
-from pddlstream.language.constants import is_plan
-from pddlstream.utils import INF, read_pickle, ensure_dir, write_pickle, get_python_version
+from hsr_tamp.pddlstream.language.constants import is_plan
+from hsr_tamp.pddlstream.utils import INF, read_pickle, ensure_dir, write_pickle, get_python_version
 
 LOAD_STATISTICS = True
 SAVE_STATISTICS = True

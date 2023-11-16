@@ -1,11 +1,11 @@
 from collections import Counter
 
-from pddlstream.algorithms.common import compute_complexity
-from pddlstream.language.constants import get_args, is_parameter, get_prefix, Fact
-from pddlstream.language.conversion import values_from_objects, substitute_fact, obj_from_value_expression
-from pddlstream.language.object import Object, OptimisticObject
-from pddlstream.language.statistics import Performance, PerformanceInfo, DEFAULT_SEARCH_OVERHEAD, Stats
-from pddlstream.utils import elapsed_time, get_mapping, flatten, INF, safe_apply_mapping, Score, INF
+from hsr_tamp.pddlstream.algorithms.common import compute_complexity
+from hsr_tamp.pddlstream.language.constants import get_args, is_parameter, get_prefix, Fact
+from hsr_tamp.pddlstream.language.conversion import values_from_objects, substitute_fact, obj_from_value_expression
+from hsr_tamp.pddlstream.language.object import Object, OptimisticObject
+from hsr_tamp.pddlstream.language.statistics import Performance, PerformanceInfo, DEFAULT_SEARCH_OVERHEAD, Stats
+from hsr_tamp.pddlstream.utils import elapsed_time, get_mapping, flatten, INF, safe_apply_mapping, Score, INF
 
 DEBUG = 'debug'
 SHARED_DEBUG = 'shared_debug'

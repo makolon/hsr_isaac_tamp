@@ -81,7 +81,6 @@
     :precondition (and (Robot ?r) (Kin ?b1 ?q ?p1 ?g)
                        (AtConf ?r ?q) (AtGrasp ?r ?b1 ?g) (Stackable ?b2)
                        (Block ?b2) (AtPose ?b2 ?p2) (not (= ?b1 ?b2)))
-                       ;(CStack ?b1 ?p1 ?b2 ?p2))
     :effect (and (AtPose ?b1 ?p1) (HandEmpty ?r) (CanMove ?r) (Stacked ?b1 ?b2)
                  (not (AtGrasp ?r ?b1 ?g))
                  (increase (total-cost) 10))

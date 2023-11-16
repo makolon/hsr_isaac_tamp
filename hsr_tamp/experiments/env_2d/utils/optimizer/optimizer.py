@@ -6,9 +6,9 @@ import time
 import os
 
 from utils.primitives import BLOCK_WIDTH, sample_region, plan_motion, GRASP
-from pddlstream.language.constants import partition_facts, NOT, MINIMIZE, get_constraints, is_parameter
-from pddlstream.language.optimizer import OptimizerOutput
-from pddlstream.utils import INF, elapsed_time
+from hsr_tamp.pddlstream.language.constants import partition_facts, NOT, MINIMIZE, get_constraints, is_parameter
+from hsr_tamp.pddlstream.language.optimizer import OptimizerOutput
+from hsr_tamp.pddlstream.utils import INF, elapsed_time
 
 MIN_CLEARANCE = 1e-3 # 0 | 1e-3
 

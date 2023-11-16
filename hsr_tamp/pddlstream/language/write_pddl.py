@@ -1,10 +1,10 @@
 import re
 import math
 
-from pddlstream.language.constants import AND, OR, OBJECT, TOTAL_COST, TOTAL_TIME, is_cost, get_prefix, \
+from hsr_tamp.pddlstream.language.constants import AND, OR, OBJECT, TOTAL_COST, TOTAL_TIME, is_cost, get_prefix, \
     CONNECTIVES, QUANTIFIERS
-from pddlstream.language.conversion import pddl_from_object, is_atom, is_negated_atom, objects_from_evaluations
-from pddlstream.language.object import Object, OptimisticObject
+from hsr_tamp.pddlstream.language.conversion import pddl_from_object, is_atom, is_negated_atom, objects_from_evaluations
+from hsr_tamp.pddlstream.language.object import Object, OptimisticObject
 
 DEFAULT_TYPE = OBJECT # number
 

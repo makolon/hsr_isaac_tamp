@@ -1,11 +1,11 @@
 import copy
 
-from pddlstream.algorithms.downward import fact_from_fd
-from pddlstream.algorithms.reorder import get_partial_orders
-from pddlstream.language.conversion import pddl_from_object
-from pddlstream.language.object import OptimisticObject, UniqueOptValue
-from pddlstream.language.function import FunctionResult
-from pddlstream.utils import neighbors_from_orders, get_mapping, safe_zip
+from hsr_tamp.pddlstream.algorithms.downward import fact_from_fd
+from hsr_tamp.pddlstream.algorithms.reorder import get_partial_orders
+from hsr_tamp.pddlstream.language.conversion import pddl_from_object
+from hsr_tamp.pddlstream.language.object import OptimisticObject, UniqueOptValue
+from hsr_tamp.pddlstream.language.function import FunctionResult
+from hsr_tamp.pddlstream.utils import neighbors_from_orders, get_mapping, safe_zip
 
 def get_steps_from_stream(stream_plan, step_from_fact, node_from_atom):
     steps_from_stream = {}

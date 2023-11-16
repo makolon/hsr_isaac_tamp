@@ -1227,20 +1227,13 @@ def create_skill_dataset(problem_name, robot, objects, object_names, state, comm
                     'robot_target_pose': [], # robot action target pose
                     'object_init_pose': {object_names[obj]: list() for obj in objects}, # object initial pose
                     'object_goal_pose': {object_names[obj]: list() for obj in objects}, # object goal pose
-                    'target_object_name': [], # action target object's name
-                    'fixed_object_name': []}  # object's name fixed to environment
+                    'target_object_name': []} # action target object's name
 
         # Add metadata (init_data)
         metadata['robot_init_pose'] = get_joint_positions(robot, full_joints)
         for obj in objects:
             metadata['object_init_pose'][object_names[obj]] = get_pose(obj)
         metadata['target_object_name'] = target_object_name
-        if target_object_name == 'gear1':
-            metadata['fixed_object_name'] = ['shaft1', 'gearbox_base']
-        elif target_object_name == 'gear2':
-            metadata['fixed_object_name'] = ['shaft2', 'gearbox_base']
-        else:
-            metadata['fixed_object_name'] = ['gearbox_base']
 
         # Get previous robot joint positions and end effector pose
         prev_robot_pose = get_joint_positions(robot, whole_body_joints)

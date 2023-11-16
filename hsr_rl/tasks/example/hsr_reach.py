@@ -33,9 +33,9 @@ from hsr_rl.robots.articulations.views.hsr_view import HSRView
 from omni.isaac.core.utils.prims import get_prim_at_path
 from omni.isaac.core.utils.stage import get_current_stage
 from omni.isaac.core.prims.rigid_prim_view import RigidPrimView
-from omni.isaac.core.articulations.articulation_view import ArticulationView
-from omni.isaac.core.utils.torch.maths import *
+from omni.isaac.core.utils.torch.maths import tensor_clamp, torch_rand_float, torch_random_dir_2
 from omni.isaac.core.objects import DynamicSphere
+
 
 # Whole Body example task with holonomic robot base
 class HSRExampleReachTask(RLTask):
@@ -57,7 +57,7 @@ class HSRExampleReachTask(RLTask):
         self._num_observations = self._task_cfg["env"]["num_observations"]
         self._num_actions = self._task_cfg["env"]["num_actions"]
 
-        self._hsr_position = torch.tensor([0.0, 0.0, 0.03], device=self._device)
+        self._hsr_position = torch.tensor([0.0, 0.0, 0.01], device=self._device)
 
         # ball properties
         self._ball_position = torch.tensor([1.5, 0.0, 0.045], device=self._device)
@@ -273,9 +273,6 @@ class HSRExampleReachTask(RLTask):
         dist_reward = 1.0 / (1.0 + dist ** 2)
         dist_reward *= dist_reward
         dist_reward = torch.where(dist <= 0.02, dist_reward * 2, dist_reward)
-
-        arm_velocity_penalty = -torch.norm(self.obs_buf[..., 19:22], p=2, dim=-1)
-        ball_velocity_penalty = -torch.norm(self.obs_buf[..., 25:28], p=2, dim=-1)
 
         self.rew_buf[:] = dist_reward
 

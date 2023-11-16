@@ -1,8 +1,8 @@
 from collections import defaultdict, deque
 
-from pddlstream.algorithms.downward import literal_holds, get_derived_predicates, apply_action
-from pddlstream.algorithms.instantiate_task import get_goal_instance
-from pddlstream.algorithms.scheduling.recover_axioms import extract_axioms
+from hsr_tamp.pddlstream.algorithms.downward import literal_holds, get_derived_predicates, apply_action
+from hsr_tamp.pddlstream.algorithms.instantiate_task import get_goal_instance
+from hsr_tamp.pddlstream.algorithms.scheduling.recover_axioms import extract_axioms
 
 
 class SuccessorNode(object):

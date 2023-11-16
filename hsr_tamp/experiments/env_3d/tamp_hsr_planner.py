@@ -26,14 +26,14 @@ from utils.pybullet_tools.hsrb_primitives import (
     # Cost function
     move_cost_fn)
 
-from pddlstream.algorithms.meta import solve, create_parser
-from pddlstream.language.generator import from_gen_fn, from_list_fn, from_fn, fn_from_constant, empty_gen, from_test
-from pddlstream.language.constants import print_solution, Equal, AND, PDDLProblem
-from pddlstream.language.external import defer_shared, never_defer
-from pddlstream.language.function import FunctionInfo
-from pddlstream.language.stream import StreamInfo, PartialInputs
-from pddlstream.language.object import SharedOptValue
-from pddlstream.utils import find_unique, get_file_path, read, str_from_object, Profiler, INF
+from hsr_tamp.pddlstream.algorithms.meta import solve, create_parser
+from hsr_tamp.pddlstream.language.generator import from_gen_fn, from_list_fn, from_fn, fn_from_constant, empty_gen, from_test
+from hsr_tamp.pddlstream.language.constants import print_solution, Equal, AND, PDDLProblem
+from hsr_tamp.pddlstream.language.external import defer_shared, never_defer
+from hsr_tamp.pddlstream.language.function import FunctionInfo
+from hsr_tamp.pddlstream.language.stream import StreamInfo
+from hsr_tamp.pddlstream.language.object import SharedOptValue
+from hsr_tamp.pddlstream.utils import find_unique, get_file_path, read, str_from_object, Profiler, INF
 
 
 BASE_CONSTANT = 1

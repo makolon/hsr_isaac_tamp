@@ -3,23 +3,23 @@ import time
 
 from collections import defaultdict
 
-from pddlstream.algorithms.algorithm import parse_problem
-from pddlstream.algorithms.common import evaluations_from_init
-from pddlstream.algorithms.constraints import PlanConstraints
-from pddlstream.algorithms.downward import get_problem, task_from_domain_problem, fact_from_fd, fd_from_fact, \
+from hsr_tamp.pddlstream.algorithms.algorithm import parse_problem
+from hsr_tamp.pddlstream.algorithms.common import evaluations_from_init
+from hsr_tamp.pddlstream.algorithms.constraints import PlanConstraints
+from hsr_tamp.pddlstream.algorithms.downward import get_problem, task_from_domain_problem, fact_from_fd, fd_from_fact, \
     fd_from_evaluations, INTERNAL_AXIOM
-from pddlstream.algorithms.incremental import solve_incremental
-from pddlstream.algorithms.focused import solve_focused_original, solve_binding, solve_adaptive, get_negative_externals
-from pddlstream.algorithms.instantiate_task import instantiate_task, convert_instantiated
-from pddlstream.algorithms.refinement import optimistic_process_streams
-from pddlstream.algorithms.scheduling.reinstantiate import reinstantiate_axiom
-from pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
-from pddlstream.language.constants import is_plan, Certificate, PDDLProblem, get_prefix, Solution
-from pddlstream.language.conversion import value_from_obj_expression, EQ
-from pddlstream.language.external import DEBUG, SHARED_DEBUG
-from pddlstream.language.stream import PartialInputs
-from pddlstream.language.temporal import SimplifiedDomain
-from pddlstream.utils import elapsed_time, INF, Verbose, irange, SEPARATOR
+from hsr_tamp.pddlstream.algorithms.incremental import solve_incremental
+from hsr_tamp.pddlstream.algorithms.focused import solve_focused_original, solve_binding, solve_adaptive, get_negative_externals
+from hsr_tamp.pddlstream.algorithms.instantiate_task import instantiate_task, convert_instantiated
+from hsr_tamp.pddlstream.algorithms.refinement import optimistic_process_streams
+from hsr_tamp.pddlstream.algorithms.scheduling.reinstantiate import reinstantiate_axiom
+from hsr_tamp.pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
+from hsr_tamp.pddlstream.language.constants import is_plan, Certificate, PDDLProblem, get_prefix, Solution
+from hsr_tamp.pddlstream.language.conversion import value_from_obj_expression, EQ
+from hsr_tamp.pddlstream.language.external import DEBUG, SHARED_DEBUG
+from hsr_tamp.pddlstream.language.stream import PartialInputs
+from hsr_tamp.pddlstream.language.temporal import SimplifiedDomain
+from hsr_tamp.pddlstream.utils import elapsed_time, INF, Verbose, irange, SEPARATOR
 
 FOCUSED_ALGORITHMS = ['focused', 'binding', 'adaptive']
 ALGORITHMS = ['incremental'] + FOCUSED_ALGORITHMS
@@ -261,7 +261,7 @@ def analyze_goal(problem, use_actions=False, use_axioms=True, use_streams=True, 
     evaluations = evaluations_from_init(init)
     init = set(fd_from_evaluations(evaluations))
 
-    # from pddlstream.algorithms.scheduling.recover_axioms import recover_axioms_plans
+    # from hsr_tamp.pddlstream.algorithms.scheduling.recover_axioms import recover_axioms_plans
     results, instantiated = examine_instantiated(problem, **kwargs) # TODO: only do if the goals are derived
     if instantiated is None:
         return None

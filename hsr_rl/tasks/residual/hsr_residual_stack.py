@@ -425,11 +425,6 @@ class HSRResidualStackTask(RLTask):
             )
 
     def is_done(self) -> None:
-        # self.reset_buf = torch.where(
-        #     self.lift_success == -1,
-        #     torch.ones_like(self.reset_buf),
-        #     self.reset_buf
-        # )
         self.reset_buf = torch.where(
             self.progress_buf == self.exp_actions.size()[0] - 1,
             torch.ones_like(self.reset_buf),

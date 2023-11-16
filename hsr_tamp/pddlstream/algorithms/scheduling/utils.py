@@ -1,9 +1,9 @@
-from pddlstream.algorithms.downward import add_predicate, make_predicate, get_literals, fact_from_fd, conditions_hold, \
+from hsr_tamp.pddlstream.algorithms.downward import add_predicate, make_predicate, get_literals, fact_from_fd, conditions_hold, \
     apply_action, get_derived_predicates
-from pddlstream.language.constants import And, Not
-from pddlstream.language.conversion import evaluation_from_fact
-from pddlstream.language.function import FunctionResult
-from pddlstream.utils import apply_mapping
+from hsr_tamp.pddlstream.language.constants import And, Not
+from hsr_tamp.pddlstream.language.conversion import evaluation_from_fact
+from hsr_tamp.pddlstream.language.function import FunctionResult
+from hsr_tamp.pddlstream.utils import apply_mapping
 
 def partition_results(evaluations, results, apply_now):
     applied_results = []
@@ -28,7 +28,7 @@ def partition_external_plan(external_plan):
 def add_unsatisfiable_to_goal(domain, goal_expression):
     #return goal_expression
     import pddl
-    from pddlstream.language.optimizer import UNSATISFIABLE
+    from hsr_tamp.pddlstream.language.optimizer import UNSATISFIABLE
     add_predicate(domain, make_predicate(UNSATISFIABLE, []))
     negated_atom = pddl.NegatedAtom(UNSATISFIABLE, tuple())
     for action in domain.actions:

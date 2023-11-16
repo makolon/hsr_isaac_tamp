@@ -11,7 +11,7 @@ from pybullet_tools.utils import connect, get_pose, set_pose, Point, disconnect,
     wait_for_user, load_pybullet, WSG_50_URDF, get_model_path, draw_pose, \
     link_from_name, get_max_limit, get_movable_joints, set_joint_position, unit_pose, create_box, RED, set_point, \
     stable_z, set_camera_pose, LockRenderer, add_line, multiply, invert, get_relative_pose, GREEN, BLUE, TAN, create_cylinder
-#from pddlstream.utils import get_file_path
+#from hsr_tamp.pddlstream.utils import get_file_path
 
 # https://www.generationrobots.com/en/403318-fe-gripper-for-panda-robotic-arm.html
 # /usr/local/lib/python2.7/site-packages/pybullet_data/gripper/

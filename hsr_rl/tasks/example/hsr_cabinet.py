@@ -45,6 +45,7 @@ import torch
 import numpy as np
 from pxr import Usd, UsdGeom
 
+
 # Whole Body example task with holonomic robot base
 class HSRExampleCabinetTask(RLTask):
     def __init__(

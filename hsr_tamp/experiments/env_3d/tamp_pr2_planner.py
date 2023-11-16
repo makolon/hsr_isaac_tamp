@@ -12,14 +12,14 @@ from utils.pybullet_tools.utils import connect, get_pose, is_placement, point_fr
     disconnect, get_joint_positions, enable_gravity, save_state, restore_state, HideOutput, \
     get_distance, LockRenderer, get_min_limit, get_max_limit, has_gui, WorldSaver, wait_if_gui, add_line, SEPARATOR
 
-from pddlstream.algorithms.meta import solve, create_parser
-from pddlstream.language.generator import from_gen_fn, from_list_fn, from_fn, fn_from_constant, empty_gen, from_test
-from pddlstream.language.constants import Equal, AND, print_solution, PDDLProblem
-from pddlstream.language.function import FunctionInfo
-from pddlstream.language.stream import StreamInfo, PartialInputs
-from pddlstream.language.object import SharedOptValue
-from pddlstream.language.external import defer_shared, never_defer
-from pddlstream.utils import read, INF, get_file_path, find_unique, Profiler, str_from_object
+from hsr_tamp.pddlstream.algorithms.meta import solve, create_parser
+from hsr_tamp.pddlstream.language.generator import from_gen_fn, from_list_fn, from_fn, fn_from_constant, empty_gen, from_test
+from hsr_tamp.pddlstream.language.constants import Equal, AND, print_solution, PDDLProblem
+from hsr_tamp.pddlstream.language.function import FunctionInfo
+from hsr_tamp.pddlstream.language.stream import StreamInfo, PartialInputs
+from hsr_tamp.pddlstream.language.object import SharedOptValue
+from hsr_tamp.pddlstream.language.external import defer_shared, never_defer
+from hsr_tamp.pddlstream.utils import read, INF, get_file_path, find_unique, Profiler, str_from_object
 
 from collections import namedtuple
 

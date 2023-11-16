@@ -1,14 +1,14 @@
-from pddlstream.algorithms.downward import fd_from_fact, substitute_derived, is_applicable, apply_action, \
+from hsr_tamp.pddlstream.algorithms.downward import fd_from_fact, substitute_derived, is_applicable, apply_action, \
     fd_from_evaluation, task_from_domain_problem, get_problem, get_action_instances
-from pddlstream.algorithms.reorder import separate_plan, get_stream_stats, dynamic_programming
-from pddlstream.algorithms.scheduling.recover_axioms import extract_axioms
-from pddlstream.algorithms.instantiate_task import get_achieving_axioms
-from pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
-from pddlstream.language.constants import get_prefix, EQ, is_plan, And
-from pddlstream.language.conversion import evaluation_from_fact
-from pddlstream.language.external import Result
-from pddlstream.language.function import PredicateResult
-from pddlstream.utils import Verbose, MockSet, neighbors_from_orders
+from hsr_tamp.pddlstream.algorithms.reorder import separate_plan, get_stream_stats, dynamic_programming
+from hsr_tamp.pddlstream.algorithms.scheduling.recover_axioms import extract_axioms
+from hsr_tamp.pddlstream.algorithms.instantiate_task import get_achieving_axioms
+from hsr_tamp.pddlstream.algorithms.scheduling.recover_streams import evaluations_from_stream_plan
+from hsr_tamp.pddlstream.language.constants import get_prefix, EQ, is_plan, And
+from hsr_tamp.pddlstream.language.conversion import evaluation_from_fact
+from hsr_tamp.pddlstream.language.external import Result
+from hsr_tamp.pddlstream.language.function import PredicateResult
+from hsr_tamp.pddlstream.utils import Verbose, MockSet, neighbors_from_orders
 
 # Extract streams required to do one action
 # Compute streams that strongly depend on these. Evaluate these.

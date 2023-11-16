@@ -1,10 +1,10 @@
 from collections import defaultdict
 
-from pddlstream.algorithms.downward import get_literals, apply_action, \
+from hsr_tamp.pddlstream.algorithms.downward import get_literals, apply_action, \
     get_derived_predicates, literal_holds, GOAL_NAME, get_precondition
-from pddlstream.algorithms.instantiate_task import get_goal_instance, filter_negated, get_achieving_axioms
-from pddlstream.language.constants import is_parameter
-from pddlstream.utils import Verbose, MockSet, safe_zip, flatten
+from hsr_tamp.pddlstream.algorithms.instantiate_task import get_goal_instance, filter_negated, get_achieving_axioms
+from hsr_tamp.pddlstream.language.constants import is_parameter
+from hsr_tamp.pddlstream.utils import Verbose, MockSet, safe_zip, flatten
 
 import copy
 import pddl

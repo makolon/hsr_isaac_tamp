@@ -1,14 +1,14 @@
 from collections import defaultdict
 from itertools import count
 
-from pddlstream.algorithms.common import add_fact, INTERNAL_EVALUATION
-from pddlstream.algorithms.downward import make_predicate, add_predicate, make_action, make_axiom, get_fluents
-from pddlstream.language.constants import Head, Evaluation, get_prefix, get_args
-from pddlstream.language.conversion import evaluation_from_fact, \
+from hsr_tamp.pddlstream.algorithms.common import add_fact, INTERNAL_EVALUATION
+from hsr_tamp.pddlstream.algorithms.downward import make_predicate, add_predicate, make_action, make_axiom, get_fluents
+from hsr_tamp.pddlstream.language.constants import Head, Evaluation, get_prefix, get_args
+from hsr_tamp.pddlstream.language.conversion import evaluation_from_fact, \
     is_atom, fact_from_evaluation, substitute_expression, objects_from_values
-from pddlstream.language.external import get_domain_predicates
-from pddlstream.language.generator import from_fn
-from pddlstream.language.stream import Stream
+from hsr_tamp.pddlstream.language.external import get_domain_predicates
+from hsr_tamp.pddlstream.language.generator import from_fn
+from hsr_tamp.pddlstream.language.stream import Stream
 
 EXOGENOUS_AXIOMS = True
 REPLACE_STREAM = True
