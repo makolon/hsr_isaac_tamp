@@ -43,8 +43,6 @@ from omni.isaac.core.simulation_context import SimulationContext
 from omni.isaac.core.objects import DynamicCuboid, FixedCuboid
 from omni.isaac.sensor import _sensor
 
-import re
-import time
 import torch
 from pxr import Usd, UsdGeom
 

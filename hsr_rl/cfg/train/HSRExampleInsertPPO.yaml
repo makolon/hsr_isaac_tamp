@@ -1,4 +1,4 @@
-name: HSRExamplePPO
+name: HSRExampleInsertPPO
 
 params:
   seed: ${...seed}
@@ -11,6 +11,7 @@ params:
   network:
     name: actor_critic
     separate: False
+
     space:
       continuous:
         mu_activation: None
@@ -25,6 +26,7 @@ params:
       units: [256, 128, 64]
       activation: elu
       d2rl: False
+
       initializer:
         name: default
       regularizer:
@@ -34,36 +36,35 @@ params:
   load_path: ${...checkpoint} # path to the checkpoint to load
 
   config:
-    name: ${resolve_default:HSRExample,${....experiment}}
+    name: ${resolve_default:HSRExampleInsert,${....experiment}}
     full_experiment_name: ${.name}
     env_name: rlgpu
     device: ${....rl_device}
     device_name: ${....rl_device}
     multi_gpu: ${....multi_gpu}
     ppo: True
-    mixed_precision: True # False
+    mixed_precision: False
     normalize_input: True
     normalize_value: True
     num_actors: ${....task.env.numEnvs}
     reward_shaper:
-      scale_value: 0.01
+      scale_value: 0.1
     normalize_advantage: True
     gamma: 0.99
     tau: 0.95
-    learning_rate: 5e-4
+    learning_rate: 3e-4
     lr_schedule: adaptive
     kl_threshold: 0.008
-    score_to_win: 100000000
-    max_epochs: ${resolve_default:1500,${....max_iterations}}
-    save_best_after: 200
+    score_to_win: 20000
+    max_epochs: ${resolve_default:250,${....max_iterations}}
+    save_best_after: 50
     save_frequency: 100
-    print_stats: True
     grad_norm: 1.0
     entropy_coef: 0.0
     truncate_grads: True
     e_clip: 0.2
-    horizon_length: 1024
-    minibatch_size: 512
+    horizon_length: 128
+    minibatch_size: 131072
     mini_epochs: 8
     critic_coef: 4
     clip_value: True

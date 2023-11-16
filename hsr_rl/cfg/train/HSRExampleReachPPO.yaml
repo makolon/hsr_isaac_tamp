@@ -1,8 +1,7 @@
-name: HSRReachPPO
+name: HSRExampleReachPPO
 
 params:
   seed: ${...seed}
-
   algo:
     name: a2c_continuous
 
@@ -12,11 +11,11 @@ params:
   network:
     name: actor_critic
     separate: False
+
     space:
       continuous:
         mu_activation: None
         sigma_activation: None
-
         mu_init:
           name: default
         sigma_init:
@@ -24,8 +23,9 @@ params:
           val: 0
         fixed_sigma: True
     mlp:
-      units: [128, 64, 32]
+      units: [256, 128, 64]
       activation: elu
+      d2rl: False
 
       initializer:
         name: default

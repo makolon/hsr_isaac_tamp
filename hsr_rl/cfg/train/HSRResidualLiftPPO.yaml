@@ -1,8 +1,7 @@
-name: HSRResidualFetchPPO
+name: HSRResidualLiftPPO
 
 params:
   seed: ${...seed}
-
   algo:
     name: a2c_continuous
 
@@ -12,11 +11,11 @@ params:
   network:
     name: actor_critic
     separate: False
+
     space:
       continuous:
         mu_activation: None
         sigma_activation: None
-
         mu_init:
           name: default
         sigma_init:
@@ -24,8 +23,9 @@ params:
           val: 0
         fixed_sigma: True
     mlp:
-      units: [128, 64, 32]
+      units: [256, 128, 64]
       activation: elu
+      d2rl: False
 
       initializer:
         name: default
@@ -36,7 +36,7 @@ params:
   load_path: ${...checkpoint} # path to the checkpoint to load
 
   config:
-    name: ${resolve_default:HSRResidualFetch,${....experiment}}
+    name: ${resolve_default:HSRResidualLift,${....experiment}}
     full_experiment_name: ${.name}
     env_name: rlgpu
     device: ${....rl_device}
@@ -64,7 +64,7 @@ params:
     truncate_grads: True
     e_clip: 0.2
     horizon_length: 135
-    minibatch_size: 138240
+    minibatch_size: 138240 # horizon_length * num_envs
     mini_epochs: 8
     critic_coef: 4
     clip_value: True

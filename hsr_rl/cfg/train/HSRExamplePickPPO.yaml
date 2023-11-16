@@ -1,6 +1,7 @@
+name: HSRExamplePickPPO
+
 params:
   seed: ${...seed}
-
   algo:
     name: a2c_continuous
 
@@ -10,11 +11,11 @@ params:
   network:
     name: actor_critic
     separate: False
+
     space:
       continuous:
         mu_activation: None
         sigma_activation: None
-
         mu_init:
           name: default
         sigma_init:
@@ -22,8 +23,9 @@ params:
           val: 0
         fixed_sigma: True
     mlp:
-      units: [128, 64, 32]
+      units: [256, 128, 64]
       activation: elu
+      d2rl: False
 
       initializer:
         name: default
@@ -34,7 +36,7 @@ params:
   load_path: ${...checkpoint} # path to the checkpoint to load
 
   config:
-    name: ${resolve_default:HSRExampleFetch,${....experiment}}
+    name: ${resolve_default:HSRExamplePick,${....experiment}}
     full_experiment_name: ${.name}
     env_name: rlgpu
     device: ${....rl_device}
