@@ -7,6 +7,10 @@ This repository implement PDDLStream for Toyota Human Support Robot (HSR) and of
 - NVIDIA RTX GPU
 - NVIDIA Driver 515.xx
 
+
+https://github.com/makolon/hsr_isaac_tamp/assets/39409362/0322855f-2aa6-46a2-963e-28bc1f77577c
+
+
 ### Installation
 1. Clone the repository
 ```
