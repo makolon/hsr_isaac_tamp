@@ -11,7 +11,14 @@ https://github.com/makolon/hsr_isaac_tamp/assets/39409362/e7945ca0-e040-47cc-b73
 
 https://github.com/makolon/hsr_isaac_tamp/assets/39409362/0322855f-2aa6-46a2-963e-28bc1f77577c
 
+https://github.com/makolon/hsr_isaac_tamp/assets/39409362/e42012fd-bc8a-4455-a068-cca886e32f79
+
+https://github.com/makolon/hsr_isaac_tamp/assets/39409362/862e6475-db74-48f2-99f3-91ddf793a165
+
+https://github.com/makolon/hsr_isaac_tamp/assets/39409362/734c6f8a-b9e4-45f5-a454-3dce7bddddb7
+
 ### Installation
+
 1. Clone the repository
 ```
 $ git clone --recursive git@github.com/makolon/tamp-hsr.git
