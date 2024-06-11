@@ -1,0 +1,10 @@
+server 192.168.11.8
+driftfile /var/lib/chrony/chrony.drift
+keyfile /etc/chrony/chrony.keys
+generatecommandkey
+log tracking measurements statistics
+logdir /var/log/chrony
+local stratum 10
+allow 192.168.11.8
+logchange 0.5
+initstepslew 20 192.168.11.8

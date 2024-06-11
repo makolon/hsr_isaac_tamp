@@ -55,7 +55,7 @@ wandb_project: 'tamp-hsr'
 
 # set default task and default training config based on task
 defaults:
-  - task: HSRExample
+  - task: HSRGearboxResidualAll
   - train: ${task}PPO
   - hydra/job_logging: disabled
 

@@ -29,15 +29,14 @@ class HSRIKSolver(object):
         self._include_base = include_base
         self.max_rot_vel = max_rot_vel
 
-        # Load urdf # TODO: fix
+        # Load urdf
         urdf_file = "/root/tamp-hsr/hsr_rl/models/urdf/hsrb_description/hsrb4s.urdf"
         self.model = pin.buildModelFromUrdf(urdf_file)
 
         # Choose joints
         name_end_effector = "hand_palm_link"
-        
-        jointsOfInterest = ['arm_lift_joint', 'arm_flex_joint', 'arm_roll_joint',
-            'wrist_flex_joint', 'wrist_roll_joint']
+
+        jointsOfInterest = []
 
         # Add torso joints
         if self._include_torso:
@@ -46,6 +45,9 @@ class HSRIKSolver(object):
         # Add base joints
         if self._include_base:
             jointsOfInterest = ['joint_x', 'joint_y', 'joint_rz'] + jointsOfInterest
+
+        jointsOfInterest += ['arm_lift_joint', 'arm_flex_joint', 'arm_roll_joint',
+            'wrist_flex_joint', 'wrist_roll_joint']
 
         remove_ids = list()
         for jnt in jointsOfInterest:
@@ -57,23 +59,23 @@ class HSRIKSolver(object):
         jointIdsToExclude = np.delete(np.arange(0, self.model.njoints), remove_ids)
 
         # Lock extra joints except joint 0 (root)
-        reference_configuration=pin.neutral(self.model)
+        reference_configuration = pin.neutral(self.model)
         if not self._include_torso:
             reference_configuration[4] = 0.1 # lock torso_lift_joint at 0.1
 
         self.model = pin.buildReducedModel(self.model, jointIdsToExclude[1:].tolist(),
                             reference_configuration=reference_configuration)
 
-        assert (len(self.model.joints)==(len(jointsOfInterest)+1)), "[IK Error]: Joints != nDoFs"
+        assert (len(self.model.joints) == (len(jointsOfInterest) + 1)), "[IK Error]: Joints != nDoFs"
         self.model_data = self.model.createData()
 
         # Define Joint-Limits
-        self.joint_pos_min = np.array([-2.617, -1.919, -1.919, -1.919])
-        self.joint_pos_max = np.array([+0.0, +3.665, +1.221, +3.665])
+        self.joint_pos_min = np.array([+0.0, -2.617, -1.919, -1.919, -1.919])
+        self.joint_pos_max = np.array([+0.69, +0.0, +3.665, +1.221, +3.665])
 
         if self._include_torso:
             self.joint_pos_min = np.hstack((np.array([+0.0]), self.joint_pos_min))
-            self.joint_pos_max = np.hstack((np.array([+0.69]), self.joint_pos_max))
+            self.joint_pos_max = np.hstack((np.array([+0.345]), self.joint_pos_max))
         if self._include_base:
             self.joint_pos_min = np.hstack((np.array([-10.0, -10.0, -10.0]), self.joint_pos_min))
             self.joint_pos_max = np.hstack((np.array([+10.0, +10.0, +10.0]), self.joint_pos_max))
@@ -111,6 +113,8 @@ class HSRIKSolver(object):
 
         if curr_joints is None:
             q = np.random.uniform(self.joint_pos_min, self.joint_pos_max)
+        else:
+            q = np.array(curr_joints)
         
         for n in range(n_trials):
             for i in range(800):
@@ -132,8 +136,8 @@ class HSRIKSolver(object):
                     J = J[:3, :] # Only pos errors
                     err = err[:3]
 
-                v = - J.T.dot(np.linalg.solve(J.dot(J.T) + damp * np.eye(6), err))
-                q = pin.integrate(self.model, q, v*dt)
+                v = -J.T.dot(np.linalg.solve(J.dot(J.T) + damp * np.eye(6), err))
+                q = pin.integrate(self.model, q, v * dt)
 
                 # Clip q to within joint limits
                 q = np.clip(q, self.joint_pos_min, self.joint_pos_max)
@@ -164,5 +168,9 @@ class HSRIKSolver(object):
 
 if __name__ == '__main__':
     hsr_ik_solver = HSRIKSolver()
-    success, best_q = hsr_ik_solver.solve_ik_pos_hsr(np.array([0.5, 0.1, 0.3]), np.array([0., 0., 0., 1.0]))
+    curr_conf = np.array([0.0, 0.0, 0.0, 0.1, -np.pi/2, 0.0, 0.0, 0.0])
+    jacobian = hsr_ik_solver.get_jacobian(curr_conf)
+    print('jacobian:', jacobian)
+
+    success, best_q = hsr_ik_solver.solve_ik_pos_hsr(np.array([1.0, 0.0, 0.3]), np.array([0., 0., 0., 1.0]), curr_conf)
     print('best_q: ', best_q)

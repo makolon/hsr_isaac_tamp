@@ -1,0 +1,7 @@
+<?xml version="1.0"/>
+<launch>
+  <arg name="mode" default="pid" />
+  <node if="$(eval 'mode == "pid"')" pkg="pid_controller" type="exec_plan.py" name="pid_controller_node"/>
+  <node if="$(eval 'mode == "rl"')" pkg="rl_controller" type="exec_plan.py" name="rl_controller_node"/>
+  <node if="$(eval 'mode == "mpc"')" pkg="mpc_controller" type="exec_plan.py" name="mpc_controller_node"/>
+</launch>

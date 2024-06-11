@@ -1,0 +1,10 @@
+<launch>
+    <arg name="mode" default="feedfoward"/>
+
+    <group if="$(eval mode=='feedfoward')">
+        <node name="feedfoward_gearbox" pkg="gearbox_2d" type="feedfoward/execute_plan.py"/>
+    </group>
+    <group if="$(eval mode=='feedback')">
+        <node name="feedback_gearbox" pkg="gearbox_2d" type="feedback/execute_plan.py"/>
+    </group>
+</launch>

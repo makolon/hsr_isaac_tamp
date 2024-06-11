@@ -32,23 +32,43 @@ def initialize_task(config, env, init_sim=True):
     from .config_utils.sim_config import SimConfig
     sim_config = SimConfig(config)
 
-    from hsr_rl.tasks.example.hsr_reach import HSRExampleReachTask
-    from hsr_rl.tasks.example.hsr_pick import HSRExamplePickTask
-    from hsr_rl.tasks.example.hsr_place import HSRExamplePlaceTask
-    from hsr_rl.tasks.example.hsr_insert import HSRExampleInsertTask
-    from hsr_rl.tasks.example.hsr_cabinet import HSRExampleCabinetTask
-    from hsr_rl.tasks.residual.hsr_residual_lift import HSRResidualLiftTask
-    from hsr_rl.tasks.residual.hsr_residual_stack import HSRResidualStackTask
+    # from hsr_rl.tasks.example.hsr_example import HSRExampleTask
+    # from hsr_rl.tasks.example.hsr_fetch import HSRExampleFetchTask
+    # from hsr_rl.tasks.example.hsr_reach import HSRExampleReachTask
+    # from hsr_rl.tasks.example.hsr_pick import HSRExamplePickTask
+    # from hsr_rl.tasks.example.hsr_cabinet import HSRExampleCabinetTask
+    # from hsr_rl.tasks.residual.hsr_residual_example import HSRResidualExampleTask
+    # from hsr_rl.tasks.residual.hsr_residual_fetch import HSRResidualFetchTask
+    # from hsr_rl.tasks.residual.hsr_residual_stack import HSRResidualStackTask
+    # from hsr_rl.tasks.factory.factory_task_nut_bolt_pick import FactoryTaskNutBoltPick
+    from hsr_rl.tasks.gearbox.hsr_gearbox_pick import HSRGearboxPickTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_place import HSRGearboxPlaceTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_insert import HSRGearboxInsertTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_all import HSRGearboxAllTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_residual_pick import HSRGearboxResidualPickTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_residual_place import HSRGearboxResidualPlaceTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_residual_insert import HSRGearboxResidualInsertTask
+    from hsr_rl.tasks.gearbox.hsr_gearbox_residual_all import HSRGearboxResidualAllTask
 
     # Mappings from strings to environments
     task_map = {
-        "HSRExampleReach": HSRExampleReachTask,
-        "HSRExamplePick": HSRExamplePickTask,
-        "HSRExamplePlace": HSRExamplePlaceTask,
-        "HSRExampleInsert": HSRExampleInsertTask,
-        "HSRExampleCabinet": HSRExampleCabinetTask,
-        "HSRResidualLift": HSRResidualLiftTask,
-        "HSRResidualStack": HSRResidualStackTask,
+        # "HSRExample": HSRExampleTask,
+        # "HSRExampleFetch": HSRExampleFetchTask,
+        # "HSRExampleReach": HSRExampleReachTask,
+        # "HSRExamplePick": HSRExamplePickTask,
+        # "HSRExampleCabinet": HSRExampleCabinetTask,
+        # "HSRResidualExample": HSRResidualExampleTask,
+        # "HSRResidualFetch": HSRResidualFetchTask,
+        # "HSRResidualStack": HSRResidualStackTask,
+        # "FactoryTaskNutBoltPick": FactoryTaskNutBoltPick,
+        "HSRGearboxPick": HSRGearboxPickTask,
+        "HSRGearboxPlace": HSRGearboxPlaceTask,
+        "HSRGearboxInsert": HSRGearboxInsertTask,
+        "HSRGearboxAll": HSRGearboxAllTask,
+        "HSRGearboxResidualPick": HSRGearboxResidualPickTask,
+        "HSRGearboxResidualPlace": HSRGearboxResidualPlaceTask,
+        "HSRGearboxResidualInsert": HSRGearboxResidualInsertTask,
+        "HSRGearboxResidualAll": HSRGearboxResidualAllTask
     }
 
     cfg = sim_config.config

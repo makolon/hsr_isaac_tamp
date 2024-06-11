@@ -52,14 +52,8 @@ POSSIBILITY OF SUCH DAMAGE.
     Specs from:
     http://www.asus.com/Multimedia/Xtion_PRO_LIVE/#specifications
     -->
-  <link name="base_footprint">
-    <inertial>
-      <mass value="13.00"/>
-      <inertia ixx="0.3742" ixy="0.000434172172" ixz="0.03088" iyy="0.3436" iyz="0.01775" izz="0.1509"/>
-      <!-- <mass value="0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/> -->
-    </inertial>
-  </link>
+  <link name="base_footprint"/>
+
   <joint name="joint_x" type="prismatic">
     <parent link="base_footprint"/>
     <child link="link_x"/>
@@ -70,7 +64,7 @@ POSSIBILITY OF SUCH DAMAGE.
   </joint>
   <link name="link_x">
     <inertial>
-      <mass value="13.00"/>
+      <mass value="11.017971"/>
       <inertia ixx="0.3742" ixy="0.000434172172" ixz="0.03088" iyy="0.3436" iyz="0.01775" izz="0.1509"/>
       <!-- <mass value="0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/> -->
@@ -86,7 +80,7 @@ POSSIBILITY OF SUCH DAMAGE.
   </joint>
   <link name="link_y">
     <inertial>
-      <mass value="13.00"/>
+      <mass value="11.017971"/>
       <inertia ixx="0.3742" ixy="0.000434172172" ixz="0.03088" iyy="0.3436" iyz="0.01775" izz="0.1509"/>
       <!-- <mass value="0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/> -->
@@ -101,7 +95,7 @@ POSSIBILITY OF SUCH DAMAGE.
   </joint>
   <link name="link_rz">
     <inertial>
-      <mass value="13.00"/>
+      <mass value="11.017971"/>
       <inertia ixx="0.3742" ixy="0.000434172172" ixz="0.03088" iyy="0.3436" iyz="0.01775" izz="0.1509"/>
       <!-- <mass value="0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/> -->
@@ -114,7 +108,7 @@ POSSIBILITY OF SUCH DAMAGE.
   </joint>
   <link name="base_link">
     <inertial>
-      <mass value="11.017971"/>
+      <mass value="0.01"/>
       <!-- use dummy weight to stabilize gazebo move base (real value: 11.017971)-->
       <origin xyz="-0.025978 -0.005498 0.17633"/>
       <inertia ixx="0.3742" ixy="0.000434172172" ixz="0.03088" iyy="0.3436" iyz="0.01775" izz="0.1509"/>

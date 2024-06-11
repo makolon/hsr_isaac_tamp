@@ -560,7 +560,7 @@ def apply_delta_pose(
 
     Args:
         frame_pos (torch.Tensor): Position of source frame. Shape: [N, 3]
-        frame_rot (torch.Tensor): Quaternion orientation of source frame in (w, x, y,z).
+        frame_rot (torch.Tensor): Quaternion orientation of source frame in (w, x, y, z).
         delta_pose (torch.Tensor): Position and orientation displacements. Shape [N, 6].
         eps (float): The tolerance to consider orientation displacement as zero.
 

@@ -8,14 +8,14 @@ from matplotlib.animation import FuncAnimation
 
 
 class AnalyzeTrajectory(object):
-    def __init__(self, idx=0, mode='both', joint_index=None):
+    def __init__(self, mode='both', joint_index=None):
         # Load ee trajectory
         self.sim_ee_traj = np.load(f"log/simulation_ee_traj.npy", allow_pickle=True)
-        self.measured_ee_traj = np.load(f"log/measured_ee_traj_{idx}.npy", allow_pickle=True)
+        self.measured_ee_traj = np.load(f"log/measured_ee_traj.npy", allow_pickle=True)
 
         # Load joint trajectory
         self.sim_joint_traj = np.load(f"log/simulation_joint_traj.npy", allow_pickle=True)
-        self.measured_joint_traj = np.load(f"log/measured_joint_traj_{idx}.npy", allow_pickle=True)
+        self.measured_joint_traj = np.load(f"log/measured_joint_traj.npy", allow_pickle=True)
 
         # Length of ee/joint trajectory
         self.ee_traj_len = min(len(self.sim_ee_traj), len(self.measured_ee_traj))
@@ -337,12 +337,11 @@ class AnalyzeMultipleTrajectory(object):
         for idx in range(self.num_files):
             # Load ee trajectory
             self.sim_ee_traj.append(np.load(f"log/simulation_ee_traj.npy", allow_pickle=True))
-            self.measured_ee_traj.append(np.load(f"log/measured_ee_traj_{idx}.npy", allow_pickle=True))
-            self.true_ee_traj.append(np.load(f"log/true_ee_traj_{idx}.npy", allow_pickle=True))
+            self.measured_ee_traj.append(np.load(f"log/measured_ee_traj.npy", allow_pickle=True))
 
             # Load joint trajectory
             self.sim_joint_traj.append(np.load(f"log/simulation_joint_traj.npy", allow_pickle=True))
-            self.measured_joint_traj.append(np.load(f"log/measured_joint_traj_{idx}.npy", allow_pickle=True))
+            self.measured_joint_traj.append(np.load(f"log/measured_joint_traj.npy", allow_pickle=True))
 
             # Length of ee/joint trajectory
             self.ee_traj_len.append(min(len(self.sim_ee_traj[idx]), len(self.measured_ee_traj[idx])))
@@ -387,11 +386,6 @@ class AnalyzeMultipleTrajectory(object):
                     measured_x = measured_traj[0][0]
                     measured_y = measured_traj[0][1]
                     measured_z = measured_traj[0][2]
-
-                    true_traj = self.true_ee_traj[idx][i]
-                    true_x = true_traj[0][0]
-                    true_y = true_traj[0][1]
-                    true_z = true_traj[0][2]
 
                     if axis == 'xy':
                         ax_xy.plot(sim_x, sim_y, marker='*', markersize=3, color='tomato', label='Simulation Trajectory')
@@ -448,23 +442,15 @@ class AnalyzeMultipleTrajectory(object):
                     measured_y = measured_traj[0][1]
                     measured_z = measured_traj[0][2]
 
-                    true_traj = self.true_ee_traj[idx][i]
-                    true_x = true_traj[0][0]
-                    true_y = true_traj[0][1]
-                    true_z = true_traj[0][2]
-
                     if axis == 'xy':
                         ax_xy.plot(sim_x, sim_y, marker='*', markersize=3, color='tomato', label='Simulation Trajectory')
                         ax_xy.plot(measured_x, measured_y, marker='*', markersize=3, color='deepskyblue', label='Measured Trajectory')
-                        ax_xy.plot(true_x, true_y, marker='*', markersize=3, color='green', label='True Trajectory')
                     elif axis == 'yz':
                         ax_yz.plot(sim_y, sim_z, marker='*', markersize=3, color='coral', label='Simulation Trajectory')
                         ax_yz.plot(measured_y, measured_z, marker='*', markersize=3, color='deepskyblue', label='Measured Trajectory')
-                        ax_yz.plot(true_y, true_z, marker='*', markersize=3, color='green', label='True Trajectory')
                     elif axis == 'zx':
                         ax_zx.plot(sim_z, sim_x, marker='*', markersize=3, color='springgreen', label='Simulation Trajectory')
                         ax_zx.plot(measured_z, measured_x, marker='*', markersize=3, color='deepskyblue', label='Measured Trajectory')
-                        ax_zx.plot(true_z, true_x, marker='*', markersize=3, color='green', label='True Trajectory')
 
                 if axis == 'xy':
                     ax_xy.set_title('End Effector XY-axis Trajectory')
@@ -666,11 +652,6 @@ class AnalyzeMultipleTrajectory(object):
         std_y_l2_all = []
         std_z_l2_all = []
         std_all_l2_all = []
-
-        max_x_l2_all = []
-        max_y_l2_all = []
-        max_z_l2_all = []
-        max_all_l2_all = []
 
         for idx in range(self.num_files):
             diff_l2_all = []
@@ -947,14 +928,14 @@ class AnalyzeMultipleTrajectory(object):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser('Visualize trajectory')
-    parser.add_argument('--index', type=int, default=0, help='set index')
+    parser.add_argument('--index', type=int, default=0, help='number of files for visualization')
     parser.add_argument('--joint_index', type=int, default=None, help='set joint index')
     parser.add_argument('--mode', type=str, default='both', help='set visualization mode')
     parser.add_argument('--visualize', action='store_true', help='set visualization')
     args = parser.parse_args()
 
     if args.visualize:
-        at = AnalyzeTrajectory(idx=args.index, mode=args.mode, joint_index=args.joint_index)
+        at = AnalyzeTrajectory(mode=args.mode, joint_index=args.joint_index)
         at.visualize_ee_3d_traj()
         at.visualize_joint_2d_traj()
     else:

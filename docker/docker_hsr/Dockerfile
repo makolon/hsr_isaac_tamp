@@ -74,6 +74,7 @@ RUN pip3 install -U pip
 RUN pip3 install \
     setuptools==45.2.0 \
 	gym==0.26.2 \
+    d3rlpy==2.2.0 \
 	pybullet==3.2.5 \
 	matplotlib==3.1.2 \
 	opencv-python==4.8.0.76 \

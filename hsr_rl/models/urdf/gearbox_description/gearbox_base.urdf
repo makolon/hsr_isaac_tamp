@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="gearbox_base">
+    <link name="gearbox_base">
+        <visual>
+            <origin xyz="0 0 0 " rpy=" 0 0 0"/>
+            <geometry>
+                <mesh filename="gearbox_meshes/gearbox_base_precise.stl"/>
+            </geometry>
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="gearbox_meshes/gearbox_base_precise.stl"/>
+            </geometry>
+            <sdf resolution="256"/>
+        </collision>
+    </link>
+</robot>

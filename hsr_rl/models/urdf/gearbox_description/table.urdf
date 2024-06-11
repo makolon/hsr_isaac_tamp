@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="table">
+    <link name="table">
+        <visual>
+            <origin xyz="0 0 0 " rpy=" 0 0 0" />
+            <geometry>
+                <box size="0.47 1.82 0.105"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.47 1.82 0.105"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </inertial>
+    </link>
+</robot>

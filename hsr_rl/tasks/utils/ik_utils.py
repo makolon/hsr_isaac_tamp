@@ -6,6 +6,7 @@
 import torch
 from dataclasses import MISSING
 from typing import Dict, Optional, Tuple
+from scipy.spatial.transform import Rotation as R
 
 from hsr_rl.tasks.utils.annotation_utils import configclass
 from hsr_rl.tasks.utils.transform_utils import (
@@ -172,12 +173,20 @@ class DifferentialInverseKinematics:
         # store command
         self._command[:] = command
 
+    def transpose_jacobian(self, rot_mat: torch.Tensor, jacobian: torch.Tensor) -> torch.Tensor:
+        # create transformation matric
+        transform_mat = torch.block_diag(rot_mat, rot_mat)
+        jacobian = torch.squeeze(jacobian, dim=0)
+        t_jacobian = torch.mm(transform_mat, jacobian)
+        return t_jacobian
+
     def compute(
         self,
         current_ee_pos: torch.Tensor,
         current_ee_rot: torch.Tensor,
         jacobian: torch.Tensor,
         joint_positions: torch.Tensor,
+        real: bool = True
     ) -> torch.Tensor:
         """Performs inference with the controller.
 
@@ -230,6 +239,13 @@ class DifferentialInverseKinematics:
         position_error, axis_angle_error = compute_pose_error(
             current_parent_pos, current_parent_rot, desired_parent_pos, desired_parent_rot, rot_error_type="axis_angle"
         )
+
+        # transpose jacobian
+        if real:
+            ee_rot = current_ee_rot.to('cpu').detach().numpy().copy()
+            rot_mat = torch.tensor(R.from_quat(ee_rot).as_matrix(), dtype=torch.float, device=self._device).view(3, 3)
+            jacobian = self.transpose_jacobian(rot_mat, jacobian)
+            jacobian = torch.unsqueeze(jacobian, dim=0)
 
         # compute the delta in joint-space
         if "position" in self.cfg.command_type:
@@ -247,6 +263,7 @@ class DifferentialInverseKinematics:
         current_ee_pos: torch.Tensor,
         current_ee_rot: torch.Tensor,
         jacobian: torch.Tensor,
+        real: bool = True
     ) -> torch.Tensor:
         """Performs inference with the controller.
 
@@ -299,6 +316,13 @@ class DifferentialInverseKinematics:
         position_error, axis_angle_error = compute_pose_error(
             current_parent_pos, current_parent_rot, desired_parent_pos, desired_parent_rot, rot_error_type="axis_angle"
         )
+
+        # transpose jacobian
+        if real:
+            ee_rot = current_ee_rot.to('cpu').detach().numpy().copy()
+            rot_mat = torch.tensor(R.from_quat(ee_rot).as_matrix(), dtype=torch.float, device=self._device).view(3, 3)
+            jacobian = self.transpose_jacobian(rot_mat, jacobian)
+            jacobian = torch.unsqueeze(jacobian, dim=0)
 
         # compute the delta in joint-space
         if "position" in self.cfg.command_type:
@@ -329,7 +353,7 @@ class DifferentialInverseKinematics:
         Returns:
             torch.Tensor: The desired delta in joint space.
         """
-        if self.cfg.ik_method == "pinv":  # Jacobian pseudo-inverse
+        if self.cfg.ik_method == "pinv": # Jacobian pseudo-inverse
             # parameters
             k_val = self._ik_params["k_val"]
 
@@ -338,7 +362,7 @@ class DifferentialInverseKinematics:
             delta_dof_pos = k_val * jacobian_pinv @ delta_pose.unsqueeze(-1)
             delta_dof_pos = delta_dof_pos.squeeze(-1)
 
-        elif self.cfg.ik_method == "svd":  # adaptive SVD
+        elif self.cfg.ik_method == "svd": # adaptive SVD
             # parameters
             k_val = self._ik_params["k_val"]
             min_singular_value = self._ik_params["min_singular_value"]
@@ -356,7 +380,7 @@ class DifferentialInverseKinematics:
             delta_dof_pos = k_val * jacobian_pinv @ delta_pose.unsqueeze(-1)
             delta_dof_pos = delta_dof_pos.squeeze(-1)
 
-        elif self.cfg.ik_method == "trans":  # Jacobian transpose
+        elif self.cfg.ik_method == "trans": # Jacobian transpose
             # parameters
             k_val = self._ik_params["k_val"]
 
@@ -365,7 +389,7 @@ class DifferentialInverseKinematics:
             delta_dof_pos = k_val * jacobian_T @ delta_pose.unsqueeze(-1)
             delta_dof_pos = delta_dof_pos.squeeze(-1)
 
-        elif self.cfg.ik_method == "dls":  # damped least squares
+        elif self.cfg.ik_method == "dls": # damped least squares
             # parameters
             lambda_val = self._ik_params["lambda_val"]
 

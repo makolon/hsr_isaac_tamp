@@ -1,0 +1,5 @@
+set ROS_HOSTNAME=192.168.11.6
+set ROS_IP=192.168.11.6
+set ROS_MASTER_URI=http://192.168.11.3:11311
+C:\path\to\catkin_ws\devel\setup.bat
+cd C:\path\to\catkin_ws\src\mocap_msg\src && python MocapRosPublisher.py

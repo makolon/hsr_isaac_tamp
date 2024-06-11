@@ -1,0 +1,3 @@
+1. Open motive
+2. Open ROS terminal as a author
+3. Copy & paste command.txt

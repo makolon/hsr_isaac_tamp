@@ -35,8 +35,7 @@ ENV ISAACSIM_PYTHON_EXE="${ISAACSIM_PATH}/python.sh"
 
 RUN echo "alias PYTHON_PATH=/isaac-sim/python.sh" >> ${HOME}/.bashrc
 RUN echo "export DISPLAY=:1" >> ${HOME}/.bashrc
-RUN echo "export PYTHONPATH=$PYTHONPATH:/root/tamp-hsr" >> ${HOME}/.bashrc
-RUN echo "export PYTHONPATH=$PYTHONPATH:/root/tamp-hsr/hsr_tamp" >> ${HOME}/.bashrc
+RUN echo "export PYTHONPATH=$PYTHONPATH:/root/tamp-hsr/" >> ${HOME}/.bashrc
 
 # Setup Python Package
 RUN apt-get update
@@ -49,6 +48,8 @@ RUN ${ISAACSIM_PYTHON_EXE} -m pip install \
     jupyterlab \
     torch \
     torchvision \
+    pytorch3d \
+    d3rlpy \
     absl-py==1.2.0 \
     aiosignal==1.2.0 \
     antlr4-python3-runtime==4.8 \

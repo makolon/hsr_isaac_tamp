@@ -7,10 +7,6 @@ This repository implement PDDLStream for Toyota Human Support Robot (HSR) and of
 - NVIDIA RTX GPU
 - NVIDIA Driver 515.xx
 
-https://github.com/makolon/hsr_isaac_tamp/assets/39409362/e7945ca0-e040-47cc-b73f-0cf99413d30d
-
-https://github.com/makolon/hsr_isaac_tamp/assets/39409362/0322855f-2aa6-46a2-963e-28bc1f77577c
-
 ### Installation
 1. Clone the repository
 ```
@@ -40,14 +36,14 @@ $ ln -s release release32
 
 ## Usage
 ### Simulation
-#### PDDLStream only for 2d environment
-You can test PDDLStream on 2D pygame environment.
+#### PDDLStream only for gearbox2d environment
+You can test PDDLStream on 2D pygame environment which imitate the gearbox assembling workspace.
 ```
 $ cd tamp-hsr/hsr_tamp/experiments/env_2d/
 $ python3 tamp_planner.py
 ```
 
-#### PDDLStream only for 3d environment
+#### PDDLStream only for gearbox3d environment
 You can test PDDLStream on 3D pybullet environment including cooking, holding block task.
 ```
 $ cd tamp-hsr/hsr_tamp/experiments/env_3d/
@@ -67,7 +63,7 @@ $ cd tamp-hsr/hsr_ros/hsr_ws/
 $ source devel/setup.bash
 ```
 
-3. Execute ROS scripts
+3. Launch gearbox assembling scripts
 ```
 $ roslaunch env_2d exec_tamp.launch --mode <feedforward/feedback>
 ```
